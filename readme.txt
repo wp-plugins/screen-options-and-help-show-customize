@@ -3,7 +3,7 @@ Contributors: gqevu6bsiz
 Donate link: 
 Tags: admin, dashboard, menu, options, option, help, tabs, role, user, screen options, media, link, pages, page, posts, post
 Requires at least: 3.3.2
-Tested up to: 3.4.2
+Tested up to: 3.5
 Stable tag: 1.0.0
 License: GPL2
 
