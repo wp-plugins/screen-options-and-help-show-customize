@@ -3,7 +3,7 @@
 Plugin Name: Screen Options and Help Show Customize
 Description: Screen options and help is customize.
 Plugin URI: http://gqevu6bsiz.chicappa.jp
-Version: 1.0
+Version: 1.0.1
 Author: gqevu6bsiz
 Author URI: http://gqevu6bsiz.chicappa.jp/author/admin/
 Text Domain: sohc
@@ -43,7 +43,7 @@ class Sohc
 
 
 	function __construct() {
-		$this->Ver = '1.0';
+		$this->Ver = '1.0.1';
 		$this->Name = 'Screen Options and Help Show Customize';
 		$this->Dir = WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) . '/';
 		$this->Slug = 'screen_option_and_help_show_customize';
@@ -242,7 +242,7 @@ class Sohc
 			$UserSetData = $Data[$Userrole];
 			if( !empty( $UserSetData[$screen->id] ) ) {
 				if( !empty( $UserSetData[$screen->id]["screenoptions"] ) ) {
-					add_action( 'screen_options_show_screen' , function() { return false; } );
+					add_filter( 'screen_options_show_screen' , '__return_false' );
 				}
 				if( !empty( $UserSetData[$screen->id]["help"] ) ) {
 					$screen->remove_help_tabs();

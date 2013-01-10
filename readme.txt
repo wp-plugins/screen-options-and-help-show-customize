@@ -4,7 +4,7 @@ Donate link:
 Tags: admin, dashboard, menu, options, option, help, tabs, role, user, screen options, media, link, pages, page, posts, post
 Requires at least: 3.3.2
 Tested up to: 3.5
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPL2
 
 Customization options and help
@@ -35,6 +35,9 @@ You can change the display for each user role.
 4. Setting List
 
 == Changelog ==
+
+= 1.0.1 =
+bug fix : Parse error
 
 = 1.0 =
 This is the initial release.
