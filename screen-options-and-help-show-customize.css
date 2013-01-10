@@ -1,0 +1,8 @@
+#sohc .postbox-container {
+	width: 49.5%;
+}
+#sohc .postbox-container#postbox-container-1 {
+	float: left;
+}#sohc .postbox-container#postbox-container-2 {
+	float: right;
+}
