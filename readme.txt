@@ -2,18 +2,17 @@
 Contributors: gqevu6bsiz
 Donate link: 
 Tags: admin, dashboard, menu, options, option, help, tabs, role, user, screen options, media, link, pages, page, posts, post
-Requires at least: 3.3.2
-Tested up to: 3.5
-Stable tag: 1.0.1
+Requires at least: 3.4.2
+Tested up to: 3.5.1
+Stable tag: 1.1
 License: GPL2
 
-Customization options and help
+Customization of the Screenoptions and Help.
 
 == Description ==
 
-You can set display options and getting help.
-You can set the default page for almost all.
-You can change the display for each user role.
+Set display options and getting help, and set the default page for almost all.
+Further change the display for each user role.
 
 == Installation ==
 
@@ -35,6 +34,10 @@ You can change the display for each user role.
 4. Setting List
 
 == Changelog ==
+
+= 1.1 =
+For each screen be able to check all.
+Be able to import and export.
 
 = 1.0.1 =
 bug fix : Parse error

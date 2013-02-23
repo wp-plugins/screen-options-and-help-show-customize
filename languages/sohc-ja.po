@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2013-02-23 11:01+0900\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Last-Translator: \n"
+
+msgid "Screen options and help is customize."
+msgstr "表示オプションとヘルプの表示カスタマイズです。"
+
+msgid "Screen Options Customize"
+msgstr "オプションタブ表示カスタマイズ"
+
+msgid "Screen Options and Help Show Customize"
+msgstr "オプションとヘルプタブの表示カスタマイズ"
+
+msgid "Please set by clicking on the item you want to set."
+msgstr "設定したい項目をクリックして設定してください。"
+
+msgid "Please check the items you want to hide."
+msgstr "非表示にしたい項目にチェックしてください。"
+
+msgid "Select All"
+msgstr "全てチェック"
+
+msgid "Plugin About"
+msgstr "プラグインについて"
+
+msgid "Import and Export"
+msgstr "インポートとエクスポート"
+
+msgid "When you are satisfied with my plugin, I'm want a amazon gift card.<br />Thanks!"
+msgstr "このプラグインに満足出来たら、amazonのギフトカードを送って欲しいです!"
+
+msgid "To Donation"
+msgstr "寄付について"
+

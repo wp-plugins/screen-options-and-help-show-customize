@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Screen Options and Help Show Customize
-Description: Screen options and help is customize.
+Description: Screen options and help show customize.
 Plugin URI: http://gqevu6bsiz.chicappa.jp
-Version: 1.0.1
+Version: 1.1
 Author: gqevu6bsiz
 Author URI: http://gqevu6bsiz.chicappa.jp/author/admin/
 Text Domain: sohc
@@ -43,7 +43,7 @@ class Sohc
 
 
 	function __construct() {
-		$this->Ver = '1.0.1';
+		$this->Ver = '1.1';
 		$this->Name = 'Screen Options and Help Show Customize';
 		$this->Dir = WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) . '/';
 		$this->Slug = 'screen_option_and_help_show_customize';
@@ -53,6 +53,8 @@ class Sohc
 
 		$this->PluginSetup();
 		add_action( 'admin_head' , array( $this , 'FilterStart' ) );
+		add_action( 'load-settings_page_' . $this->Slug , array( $this , 'export' ) );
+		add_action( 'load-settings_page_' . $this->Slug , array( $this , 'import' ) );
 	}
 
 	// PluginSetup
@@ -84,11 +86,13 @@ class Sohc
 
 	// SettingPage
 	function settings() {
+
 		if( !empty( $_POST["reset"] ) ) {
 			$this->update_reset();
 		} elseif( !empty( $_POST[$this->UPFN] ) ) {
 			$this->update();
 		}
+
 		include_once 'inc/settings.php';
 	}
 
@@ -139,15 +143,15 @@ class Sohc
 						$Contents .= __( 'User Roles' );
 					$Contents .= '</th>';
 					
-					$helponly = $this->helponly($screenid);
+					$helponly = $this->helponly( $screenid );
 					if( empty( $helponly ) ) {
-						$Contents .= '<th>';
+						$Contents .= '<th><label>';
 							$Contents .= __( 'Screen Options' );
-						$Contents .= '</th>';
+						$Contents .= '</label></th>';
 					}
-					$Contents .= '<th>';
+					$Contents .= '<th><label>';
 						$Contents .= __( 'Help' );
-					$Contents .= '</th>';
+					$Contents .= '</label></th>';
 				$Contents .= '</tr>';
 			$Contents .= '</thead>';
 			$Contents .= '<tbody>';
@@ -175,7 +179,21 @@ class Sohc
 					$Contents .= '</td>';
 				$Contents .= '</tr>';
 			}
+
 			$Contents .= '</tbody>';
+
+			// all check
+			$Contents .= '<tfoot>';
+				$Contents .= '<tr>';
+					$Contents .= '<td>&nbsp;</td>';
+					if( empty( $helponly ) ) {
+						$Contents .= '<td><label><input type="checkbox" name="all_checked" title="' . $screenid . '" class="screenoptions" /> ' . __( 'All checked' , $this->Td ) . '</label></td>';
+					}
+					
+					$Contents .= '<td><label><input type="checkbox" name="all_checked" title="' . $screenid . '" class="help" /> ' . __( 'All checked' , $this->Td ) . '</label></td>';
+				$Contents .= '</tr>';
+			$Contents .= '</tfoot>';
+
 		$Contents .= '</table>';
 		$Contents .= '</div>';
 		$Contents .= '</div>';
@@ -221,6 +239,86 @@ class Sohc
 		delete_option( $Record );
 		$this->Msg = '<div class="updated"><p><strong>' . __('Settings saved.') . '</strong></p></div>';
 	}
+
+
+	// Data Export
+	function export() {
+		$Data = $this->get_data();
+		if( !empty( $Data ) && !empty( $_GET["download"] ) ) {
+
+			$filename = $this->Slug . '.csv';
+			header( 'Content-Description: File Transfer' );
+			header( 'Content-Disposition: attachment; filename=' . $filename );
+			header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ), true );
+
+			$Content = '';
+			foreach( $Data as $user => $screen ) {
+				foreach( $screen as $screen_id => $type ) {
+					if( !empty( $type ) ) {
+						foreach( $type as $meta => $val ) {
+							if( !empty( $val ) ) {
+
+								$Content .= $user . ',';
+								$Content .= $screen_id . ',';
+								$Content .= $meta . ',';
+								$Content .= $val . "\n";
+
+							}
+						}
+					}
+				}
+				
+			}
+			if( !empty( $Content ) ) {
+				echo $Content;
+			}
+			
+			die();
+
+		}
+	}
+
+	// Data Import
+	function import() {
+
+		if( !empty( $_POST["upload"] ) && !empty( $_FILES["import"] ) ) {
+
+			$file = $_FILES["import"];
+			if ( !empty( $file['error'] ) or empty( $file['tmp_name'] ) or !strpos( $file['name'] , 'csv') ) {
+				$this->Msg = '<div class="error"><p><strong>' . __('Sorry, there has been an error.') . '</strong></p>';
+				$this->Msg .= esc_html( $file['error'] ) . '</div>';
+				return false;
+			}
+			
+			$f = fopen( $file["tmp_name"] , 'r' );
+			$content = fread( $f , filesize( $file["tmp_name"] ) );
+
+			$content_n = explode( "\n" , $content );
+
+			$Update = array();
+			foreach( $content_n as $line ) {
+				if( !empty( $line ) ) {
+					$line_n = explode( ',' , $line );
+					
+					$user = strip_tags( $line_n[0] );
+					$screen_id = strip_tags( $line_n[1] );
+					$meta = strip_tags( $line_n[2] );
+					$val = strip_tags( $line_n[3] );
+					
+					$Update[$user][$screen_id][$meta] = $val;
+				}
+			}
+
+			if( !empty( $Update ) ) {
+				$Record = $this->RecordName;
+				update_option( $Record , $Update );
+				$this->Msg = '<div class="updated"><p><strong>' . __('Settings saved.') . '</strong></p></div>';
+			}
+
+		}
+		
+	}
+
 
 
 	// FilterStart

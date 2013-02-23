@@ -60,10 +60,61 @@ $Data = $this->get_data();
 		<p class="submit">
 			<input type="submit" class="button-primary" name="update" value="<?php _e( 'Save' ); ?>" />
 		</p>
+
 		<p class="submit reset">
 			<span class="description"><?php _e( 'Would initialize?' , 'plvc' ); ?></span>
 			<input type="submit" class="button-secondary" name="reset" value="<?php _e( 'Reset' ); ?>" />
 		</p>
-
+		
 	</form>
+
+	<p>&nbsp;</p>
+
+	<div class="postbox widget">
+		<div class="widget-top">
+			<div class="widget-title"><h4><?php _e( 'Plugin About' , $this->Td ); ?></h4></div>
+		</div>
+		<div class="inside">
+
+			<p><strong><?php _e( 'Export' ); ?></strong></p>
+			<p>
+				<form id="file_export" method="get" action="">
+					<?php wp_nonce_field(); ?>
+					<input type="hidden" name="page" value="<?php echo $this->Slug; ?>" />
+					<input type="hidden" name="download" value="true" />
+					<input type="submit" class="button-secondary" name="export" value="<?php _e( 'Download Export File' ); ?>" />
+				</form>
+			</p>
+
+			<p><strong><?php _e( 'Import' ); ?></strong></p>
+			<p>
+				<form id="file_import" method="post" action="" enctype="multipart/form-data">
+					<?php wp_nonce_field(); ?>
+					<input type="hidden" name="upload" value="true" />
+					<label for="import"><?php _e( 'Choose a file from your computer:' ); ?></label>
+					<input type="file" name="import" size="25" />
+					<input type="submit" class="button-secondary" name="submit" value="<?php _e( 'Upload file and import' ); ?>" />
+				</form>
+			</p>
+
+			<p><strong>Please translate to your language.</strong><br />Looking for someone who will translate.</p>
+			<p>&gt;<a href="http://gqevu6bsiz.chicappa.jp/please-translation/" target="_blank">To translate</a></p>
+
+			<p><strong><?php _e( 'Please donation.' , $this->Td ); ?></strong></p>
+			<p><?php _e( 'When you are satisfied with my plugin, I\'m want a amazon gift card.<br />Thanks!' , $this->Td ); ?></p>
+
+			<p>&gt;<a href="http://gqevu6bsiz.chicappa.jp/please-donation/" target="_blank"><?php _e( 'To Donation' , $this->Td ); ?></a></p>
+			<p><strong><?php _e( 'Other' , $this->Td ); ?></strong></p>
+
+			<p>
+				<span><a href="http://gqevu6bsiz.chicappa.jp/" target="_blank">blog</a></span> &nbsp; 
+				<span><a href="https://twitter.com/gqevu6bsiz" target="_blank">twitter</a></span> &nbsp; 
+				<span><a href="http://www.facebook.com/pages/Gqevu6bsiz/499584376749601" target="_blank">facebook</a></span> &nbsp; 
+				<span><a href="http://wordpress.org/support/plugin/screen-options-and-help-show-customize" target="_blank">support forum</a></span> &nbsp; 
+				<span><a href="http://wordpress.org/support/view/plugin-reviews/screen-options-and-help-show-customize" target="_blank">review</a></span>
+			</p>
+
+		</div>
+	</div>
+
 </div>
