@@ -3,7 +3,7 @@
 Plugin Name: Screen Options and Help Show Customize
 Description: Screen options and help show customize.
 Plugin URI: http://gqevu6bsiz.chicappa.jp
-Version: 1.1
+Version: 1.2
 Author: gqevu6bsiz
 Author URI: http://gqevu6bsiz.chicappa.jp/author/admin/
 Text Domain: sohc
@@ -43,7 +43,7 @@ class Sohc
 
 
 	function __construct() {
-		$this->Ver = '1.1';
+		$this->Ver = '1.2';
 		$this->Name = 'Screen Options and Help Show Customize';
 		$this->Dir = WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) . '/';
 		$this->Slug = 'screen_option_and_help_show_customize';
@@ -66,7 +66,13 @@ class Sohc
 		add_filter( 'plugin_action_links' , array( $this , 'plugin_action_links' ) , 10 , 2 );
 
 		// add menu
-		add_action( 'admin_menu' , array( $this , 'admin_menu' ) );
+		$Data = get_site_option( $this->RecordName );
+		if( empty( $Data ) ) {
+			add_action( 'admin_menu' , array( $this , 'admin_menu' ) );
+		}
+
+		// add menu
+		add_action( 'network_admin_menu' , array( $this , 'admin_menu' ) );
 	}
 
 	// PluginSetup
@@ -80,7 +86,8 @@ class Sohc
 
 	// PluginSetup
 	function admin_menu() {
-		add_options_page(  __( 'Screen Options and Help Show Customize' ) , __( 'Screen Options Customize' , $this->Td ) , 'administrator', $this->Slug , array( $this , 'settings'));
+		add_options_page(  __( 'Screen Options and Help Show Customize' , $this->Td ) , __( 'Screen Options Customize' , $this->Td ) , 'administrator', $this->Slug , array( $this , 'settings'));
+		add_submenu_page( 'settings.php' , __( 'Screen Options and Help Show Customize' , $this->Td ) , __( 'Screen Options Customize' , $this->Td ) , 'manage_network' , $this->Slug, array( $this , 'settings_multi') );
 	}
 
 
@@ -97,10 +104,30 @@ class Sohc
 	}
 
 
+	// SettingPage
+	function settings_multi() {
+
+		if( !empty( $_POST["reset"] ) ) {
+			$this->update_reset_multi();
+		} elseif( !empty( $_POST[$this->UPFN] ) ) {
+			$this->update_multi();
+		}
+
+		include_once 'inc/settings.php';
+	}
+
+
+
+
 	// Data get
 	function get_data() {
 		$NewData = array();
-		$Data = get_option( $this->RecordName );
+		
+		if( is_network_admin() ) {
+			$Data = get_site_option( $this->RecordName );
+		} else {
+			$Data = get_option( $this->RecordName );
+		}
 		if( !empty( $Data ) ) {
 			$NewData = $Data;
 		}
@@ -233,10 +260,43 @@ class Sohc
 		}
 	}
 
+	// Update Setting
+	function update_multi() {
+		$UPFN = strip_tags( $_POST[$this->UPFN] );
+		if( $UPFN == 'Y' ) {
+			unset( $_POST[$this->UPFN] );
+
+			$Update = array();
+			if(!empty( $_POST["data"] )) {
+				foreach ($_POST["data"] as $rolename => $val) {
+					foreach($val as $tab => $options) {
+						if( !empty( $options ) ) {
+							foreach( $options as $option) {
+								$Update[strip_tags( $rolename )][strip_tags( $tab )][$option] = 1;
+							}
+						}
+					}
+				}
+			}
+			if(!empty( $Update )) {
+				$Record = $this->RecordName;
+				update_site_option( $Record , $Update );
+				$this->Msg = '<div class="updated"><p><strong>' . __('Settings saved.') . '</strong></p></div>';
+			}
+		}
+	}
+
 	// Update Reset
 	function update_reset() {
 		$Record = $this->RecordName;
 		delete_option( $Record );
+		$this->Msg = '<div class="updated"><p><strong>' . __('Settings saved.') . '</strong></p></div>';
+	}
+
+	// Update Reset
+	function update_reset_multi() {
+		$Record = $this->RecordName;
+		delete_site_option( $Record );
 		$this->Msg = '<div class="updated"><p><strong>' . __('Settings saved.') . '</strong></p></div>';
 	}
 
@@ -304,14 +364,18 @@ class Sohc
 					$screen_id = strip_tags( $line_n[1] );
 					$meta = strip_tags( $line_n[2] );
 					$val = strip_tags( $line_n[3] );
-					
+
 					$Update[$user][$screen_id][$meta] = $val;
 				}
 			}
 
 			if( !empty( $Update ) ) {
 				$Record = $this->RecordName;
-				update_option( $Record , $Update );
+				if( is_network_admin() ) {
+					update_site_option( $Record , $Update );
+				} else {
+					update_option( $Record , $Update );
+				}
 				$this->Msg = '<div class="updated"><p><strong>' . __('Settings saved.') . '</strong></p></div>';
 			}
 
@@ -323,15 +387,26 @@ class Sohc
 
 	// FilterStart
 	function FilterStart() {
-		$Data = $this->get_data();
+		$Data = get_site_option( $this->RecordName );
+
+		if( empty( $Data ) ) {
+			$Data = get_option( $this->RecordName );
+		}
+
 		if( !empty( $Data) ) {
 			$this->ScreenMeta();
 		}
+
 	}
 	
 	// FilterStart
 	function ScreenMeta() {
-		$Data = $this->get_data();
+		$Data = get_site_option( $this->RecordName );
+
+		if( empty( $Data ) ) {
+			$Data = get_option( $this->RecordName );
+		}
+
 		$Userinfo = wp_get_current_user();
 		$Userrole = $Userinfo->roles[0];
 

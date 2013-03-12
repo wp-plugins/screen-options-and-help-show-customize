@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "Last-Translator: \n"
 
-msgid "Screen options and help is customize."
+msgid "Screen options and help show customize."
 msgstr ""
 
 msgid "Screen Options Customize"
@@ -28,11 +28,26 @@ msgstr ""
 msgid "Please check the items you want to hide."
 msgstr ""
 
+msgid "Data set in the network management screen is applied to all site management screen."
+msgstr ""
+
 msgid "All checked"
 msgstr ""
 
-msgid "When you are satisfied with my plugin, I'm want a gift card.<br />Thanks!"
+msgid "Plugin About"
 msgstr ""
 
-msgid "To Donation"
+msgid "Import and Export"
+msgstr ""
+
+msgid "When you are satisfied with my plugin, I'm want a amazon gift card.<br />Thanks!"
+msgstr ""
+
+msgid "Please donation."
+msgstr ""
+
+msgid "To donation."
+msgstr ""
+
+msgid "Would initialize?"
 msgstr ""

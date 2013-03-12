@@ -18,6 +18,9 @@ $Data = $this->get_data();
 	<?php echo $this->Msg; ?>
 	<p><?php _e( 'Please set by clicking on the item you want to set.' , $this->Td ); ?>
 	<p><?php _e( 'Please check the items you want to hide.' , $this->Td ); ?>
+	<?php if( is_network_admin() ) : ?>
+		<p><strong><?php _e ( 'Data set in the network management screen is applied to all site management screen.' , $this->Td ); ?></strong></p>
+	<?php endif; ?>
 
 	<form id="sohc" method="post" action="">
 		<input type="hidden" name="<?php echo $this->UPFN; ?>" value="Y">
@@ -62,7 +65,7 @@ $Data = $this->get_data();
 		</p>
 
 		<p class="submit reset">
-			<span class="description"><?php _e( 'Would initialize?' , 'plvc' ); ?></span>
+			<span class="description"><?php _e( 'Would initialize?' , $this->Td ); ?></span>
 			<input type="submit" class="button-secondary" name="reset" value="<?php _e( 'Reset' ); ?>" />
 		</p>
 		
@@ -103,7 +106,7 @@ $Data = $this->get_data();
 			<p><strong><?php _e( 'Please donation.' , $this->Td ); ?></strong></p>
 			<p><?php _e( 'When you are satisfied with my plugin, I\'m want a amazon gift card.<br />Thanks!' , $this->Td ); ?></p>
 
-			<p>&gt;<a href="http://gqevu6bsiz.chicappa.jp/please-donation/" target="_blank"><?php _e( 'To Donation' , $this->Td ); ?></a></p>
+			<p>&gt;<a href="http://gqevu6bsiz.chicappa.jp/please-donation/" target="_blank"><?php _e( 'To donation.' , $this->Td ); ?></a></p>
 			<p><strong><?php _e( 'Other' , $this->Td ); ?></strong></p>
 
 			<p>
