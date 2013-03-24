@@ -4,7 +4,7 @@ Donate link:
 Tags: admin, dashboard, menu, options, option, help, tabs, role, user, screen options, media, link, pages, page, posts, post
 Requires at least: 3.4.2
 Tested up to: 3.5.1
-Stable tag: 1.2
+Stable tag: 1.2.1
 License: GPL2
 
 Customization of the Screenoptions and Help.
@@ -34,6 +34,10 @@ Further change the display for each user role.
 4. Setting List
 
 == Changelog ==
+
+= 1.2.1 =
+Fixed a bug that does not work the single site.
+Only when the multisite, enable to select my-sites.
 
 = 1.2 =
 I support multisite.

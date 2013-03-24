@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
 
 	var $Form = $("#sohc");
 
-	$('.handlediv' , $Form).click(function() {
+	$('#postbox-container-1 .handlediv, #postbox-container-1 h3' , $Form).click(function() {
 		$(this).parent().toggleClass('closed');
 	});
 

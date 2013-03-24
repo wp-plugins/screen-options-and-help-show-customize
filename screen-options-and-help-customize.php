@@ -3,7 +3,7 @@
 Plugin Name: Screen Options and Help Show Customize
 Description: Screen options and help show customize.
 Plugin URI: http://gqevu6bsiz.chicappa.jp
-Version: 1.2
+Version: 1.2.1
 Author: gqevu6bsiz
 Author URI: http://gqevu6bsiz.chicappa.jp/author/admin/
 Text Domain: sohc
@@ -43,16 +43,16 @@ class Sohc
 
 
 	function __construct() {
-		$this->Ver = '1.2';
+		$this->Ver = '1.2.1';
 		$this->Name = 'Screen Options and Help Show Customize';
 		$this->Dir = WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) . '/';
 		$this->Slug = 'screen_option_and_help_show_customize';
 		$this->RecordName = 'sohc_options';
-		$this->Td = 'sohc';
+		$this->ltd = 'sohc';
 		$this->UPFN = 'Y';
 
 		$this->PluginSetup();
-		add_action( 'admin_head' , array( $this , 'FilterStart' ) );
+		$this->FilterStart();
 		add_action( 'load-settings_page_' . $this->Slug , array( $this , 'export' ) );
 		add_action( 'load-settings_page_' . $this->Slug , array( $this , 'import' ) );
 	}
@@ -60,39 +60,66 @@ class Sohc
 	// PluginSetup
 	function PluginSetup() {
 		// load text domain
-		load_plugin_textdomain( $this->Td , false , basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( $this->ltd , false , basename( dirname( __FILE__ ) ) . '/languages' );
 
 		// plugin links
 		add_filter( 'plugin_action_links' , array( $this , 'plugin_action_links' ) , 10 , 2 );
+		add_filter( 'network_admin_plugin_action_links' , array( $this , 'network_admin_plugin_action_links' ) , 10 , 2 );
 
 		// add menu
-		$Data = get_site_option( $this->RecordName );
-		if( empty( $Data ) ) {
+		if( defined( 'WP_ALLOW_MULTISITE' ) ) {
+			$Data = get_site_option( $this->RecordName );
+			if( empty( $Data ) ) {
+				add_action( 'admin_menu' , array( $this , 'admin_menu' ) );
+			}
+			add_action( 'network_admin_menu' , array( $this , 'admin_menu' ) );
+		} else {
 			add_action( 'admin_menu' , array( $this , 'admin_menu' ) );
 		}
-
-		// add menu
-		add_action( 'network_admin_menu' , array( $this , 'admin_menu' ) );
 	}
 
 	// PluginSetup
 	function plugin_action_links( $links , $file ) {
 		if( plugin_basename(__FILE__) == $file ) {
-			$link = '<a href="' . 'admin.php?page=' . $this->Slug . '">' . __('Settings') . '</a>';
-			array_unshift( $links, $link );
+			$support_link = '<a href="http://wordpress.org/support/plugin/post-lists-view-custom" target="_blank">' . __( 'Support Forums' ) . '</a>';
+			$setting_link = '<a href="' . self_admin_url( 'options-general.php?page=' . $this->Slug ) . '">' . __('Settings') . '</a>';
+
+			array_unshift( $links, $setting_link , $support_link );
+		}
+		return $links;
+	}
+
+	// PluginSetup
+	function network_admin_plugin_action_links( $links , $file ) {
+		if( plugin_basename(__FILE__) == $file ) {
+			$support_link = '<a href="http://wordpress.org/support/plugin/post-lists-view-custom" target="_blank">' . __( 'Support Forums' ) . '</a>';
+			$setting_link = '<a href="' . self_admin_url( 'settings.php?page=' . $this->Slug ) . '">' . __('Settings') . '</a>';
+
+			array_unshift( $links, $setting_link , $support_link );
 		}
 		return $links;
 	}
 
 	// PluginSetup
 	function admin_menu() {
-		add_options_page(  __( 'Screen Options and Help Show Customize' , $this->Td ) , __( 'Screen Options Customize' , $this->Td ) , 'administrator', $this->Slug , array( $this , 'settings'));
-		add_submenu_page( 'settings.php' , __( 'Screen Options and Help Show Customize' , $this->Td ) , __( 'Screen Options Customize' , $this->Td ) , 'manage_network' , $this->Slug, array( $this , 'settings_multi') );
+		add_options_page(  __( 'Screen Options and Help Show Customize' , $this->ltd ) , __( 'Screen Options Customize' , $this->ltd ) , 'administrator', $this->Slug , array( $this , 'settings'));
+		if( defined( 'WP_ALLOW_MULTISITE' ) ) {
+			add_submenu_page( 'settings.php' , __( 'Screen Options and Help Show Customize' , $this->ltd ) , __( 'Screen Options Customize' , $this->ltd ) , 'manage_network' , $this->Slug, array( $this , 'settings_multi') );
+		}
 	}
 
 
 	// SettingPage
 	function settings() {
+
+		// footer text
+		add_filter( 'admin_footer_text' , array( $this , 'admin_footer_text' ) );
+
+		// translation
+		$mofile = $this->TransFileCk();
+		if( $mofile == false && empty( $this->Msg ) ) {
+			$this->Msg = '<div class="updated" style="background-color: rgba(255,204,190,1.0); border-color: rgba(160,0,0,1.0);"><p><strong>Please translate to your language.</strong> &gt; <a href="http://gqevu6bsiz.chicappa.jp/please-translation/?utm_source=use_plugin&utm_medium=translation&utm_campaign=1_2_1" target="_blank">To translate</a></p></div>';
+		}
 
 		if( !empty( $_POST["reset"] ) ) {
 			$this->update_reset();
@@ -107,6 +134,15 @@ class Sohc
 	// SettingPage
 	function settings_multi() {
 
+		// footer text
+		add_filter( 'admin_footer_text' , array( $this , 'admin_footer_text' ) );
+
+		// translation
+		$mofile = $this->TransFileCk();
+		if( $mofile == false && empty( $this->Msg )  ) {
+			$this->Msg = '<div class="updated" style="background-color: rgba(255,204,190,1.0); border-color: rgba(160,0,0,1.0);"><p><strong>Please translate to your language.</strong> &gt; <a href="http://gqevu6bsiz.chicappa.jp/please-translation/?utm_source=use_plugin&utm_medium=translation&utm_campaign=1_2_1" target="_blank">To translate</a></p></div>';
+		}
+
 		if( !empty( $_POST["reset"] ) ) {
 			$this->update_reset_multi();
 		} elseif( !empty( $_POST[$this->UPFN] ) ) {
@@ -114,6 +150,26 @@ class Sohc
 		}
 
 		include_once 'inc/settings.php';
+	}
+
+
+
+	// Layout
+	function admin_footer_text( $text ) {
+		
+		$text = '<img src="' . $this->Dir . 'images/gqevu6bsiz.png" width="18" /> Plugin developer : <a href="http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=footer&utm_campaign=1_2_1" target="_blank">gqevu6bsiz</a>';
+		
+		return $text;
+	}
+
+	// Translation File Check
+	function TransFileCk() {
+		$file = false;
+		$moFile = WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) . '/languages/' . $this->ltd . '-' . get_locale() . '.mo';
+		if( file_exists( $moFile ) ) {
+			$file = true;
+		}
+		return $file;
 	}
 
 
@@ -214,10 +270,10 @@ class Sohc
 				$Contents .= '<tr>';
 					$Contents .= '<td>&nbsp;</td>';
 					if( empty( $helponly ) ) {
-						$Contents .= '<td><label><input type="checkbox" name="all_checked" title="' . $screenid . '" class="screenoptions" /> ' . __( 'All checked' , $this->Td ) . '</label></td>';
+						$Contents .= '<td><label><input type="checkbox" name="all_checked" title="' . $screenid . '" class="screenoptions" /> ' . __( 'All checked' , $this->ltd ) . '</label></td>';
 					}
 					
-					$Contents .= '<td><label><input type="checkbox" name="all_checked" title="' . $screenid . '" class="help" /> ' . __( 'All checked' , $this->Td ) . '</label></td>';
+					$Contents .= '<td><label><input type="checkbox" name="all_checked" title="' . $screenid . '" class="help" /> ' . __( 'All checked' , $this->ltd ) . '</label></td>';
 				$Contents .= '</tr>';
 			$Contents .= '</tfoot>';
 
@@ -230,7 +286,7 @@ class Sohc
 
 	// Setting Item
 	function helponly( $screenid ) {
-		$helparr = array( 'profile' , 'media' , 'comment' , 'themes' , 'theme-install' , 'user' , 'tools' );
+		$helparr = array( 'my-sites' , 'profile' , 'media' , 'comment' , 'themes' , 'theme-install' , 'user' , 'tools' );
 		return in_array( $screenid , $helparr );
 	}
 
@@ -387,28 +443,26 @@ class Sohc
 
 	// FilterStart
 	function FilterStart() {
-		$Data = get_site_option( $this->RecordName );
-
-		if( empty( $Data ) ) {
-			$Data = get_option( $this->RecordName );
-		}
-
-		if( !empty( $Data) ) {
-			$this->ScreenMeta();
-		}
-
+		add_action( 'admin_head' , array( $this , 'ScreenMeta' ) );
 	}
 	
 	// FilterStart
 	function ScreenMeta() {
-		$Data = get_site_option( $this->RecordName );
 
+		$Data = array();
+
+		if( defined( 'WP_ALLOW_MULTISITE' ) ) {
+			$Data = get_site_option( $this->RecordName );
+		}
+		
 		if( empty( $Data ) ) {
 			$Data = get_option( $this->RecordName );
 		}
 
 		$Userinfo = wp_get_current_user();
 		$Userrole = $Userinfo->roles[0];
+		
+		$screen = get_current_screen();
 
 		if( !empty( $Data[$Userrole] ) ) {
 			$screen = get_current_screen();
@@ -422,6 +476,7 @@ class Sohc
 				}
 			}
 		}
+
 	}
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-$PageTitle = __( 'Screen Options and Help Show Customize' , $this->Td );
+$PageTitle = __( 'Screen Options and Help Show Customize' , $this->ltd );
 
 // include js css
 $ReadedJs = array( 'jquery' , 'jquery-ui-sortable' );
@@ -16,10 +16,10 @@ $Data = $this->get_data();
 	<div class="icon32" id="icon-options-general"></div>
 	<h2><?php echo $PageTitle; ?></h2>
 	<?php echo $this->Msg; ?>
-	<p><?php _e( 'Please set by clicking on the item you want to set.' , $this->Td ); ?>
-	<p><?php _e( 'Please check the items you want to hide.' , $this->Td ); ?>
+	<p><?php _e( 'Please set by clicking on the item you want to set.' , $this->ltd ); ?>
+	<p><?php _e( 'Please check the items you want to hide.' , $this->ltd ); ?>
 	<?php if( is_network_admin() ) : ?>
-		<p><strong><?php _e ( 'Data set in the network management screen is applied to all site management screen.' , $this->Td ); ?></strong></p>
+		<p><strong><?php _e ( 'Data set in the network management screen is applied to all site management screen.' , $this->ltd ); ?></strong></p>
 	<?php endif; ?>
 
 	<form id="sohc" method="post" action="">
@@ -29,10 +29,24 @@ $Data = $this->get_data();
 		<div class="metabox-holder columns-2">
 
 			<div class="postbox-container" id="postbox-container-1">
+
 				<?php echo $this->get_lists( 'Dashboard' , 'dashboard' , $Data ); ?>
+				<?php if( defined( 'WP_ALLOW_MULTISITE' ) ) : ?>
+					<?php echo $this->get_lists( 'My Sites' , 'my-sites' , $Data ); ?>
+				<?php endif; ?>
+				<?php echo $this->get_lists( 'All Posts' , 'edit-post' , $Data ); ?>
+				<?php echo $this->get_lists( 'New Post' , 'post' , $Data ); ?>
+				<?php echo $this->get_lists( 'Categories' , 'edit-category' , $Data ); ?>
+				<?php echo $this->get_lists( 'Tags' , 'edit-post_tag' , $Data ); ?>
+				<?php echo $this->get_lists( 'Media Library' , 'upload' , $Data ); ?>
+				<?php echo $this->get_lists( 'Upload New Media' , 'media' , $Data ); ?>
 				<?php echo $this->get_lists( 'Links' , 'link-manager' , $Data ); ?>
 				<?php echo $this->get_lists( 'Add New Link' , 'link' , $Data ); ?>
 				<?php echo $this->get_lists( 'Link Categories' , 'edit-link_category' , $Data ); ?>
+				<?php echo $this->get_lists( 'Pages' , 'edit-page' , $Data ); ?>
+				<?php echo $this->get_lists( 'Add New Page' , 'page' , $Data ); ?>
+				<?php echo $this->get_lists( 'Comments' , 'edit-comments' , $Data ); ?>
+				<?php echo $this->get_lists( 'Edit Comment' , 'comment' , $Data ); ?>
 				<?php echo $this->get_lists( 'Manage Themes' , 'themes' , $Data ); ?>
 				<?php echo $this->get_lists( 'Install Themes' , 'theme-install' , $Data ); ?>
 				<?php echo $this->get_lists( 'Widgets' , 'widgets' , $Data ); ?>
@@ -41,19 +55,63 @@ $Data = $this->get_data();
 				<?php echo $this->get_lists( 'Add New User' , 'user' , $Data ); ?>
 				<?php echo $this->get_lists( 'Profile' , 'profile' , $Data ); ?>
 				<?php echo $this->get_lists( 'Tools' , 'tools' , $Data ); ?>
-			</div>
 
+			</div>
+			
 			<div class="postbox-container" id="postbox-container-2">
-				<?php echo $this->get_lists( 'All Posts' , 'edit-post' , $Data ); ?>
-				<?php echo $this->get_lists( 'New Post' , 'post' , $Data ); ?>
-				<?php echo $this->get_lists( 'Categories' , 'edit-category' , $Data ); ?>
-				<?php echo $this->get_lists( 'Tags' , 'edit-post_tag' , $Data ); ?>
-				<?php echo $this->get_lists( 'Media Library' , 'upload' , $Data ); ?>
-				<?php echo $this->get_lists( 'Upload New Media' , 'media' , $Data ); ?>
-				<?php echo $this->get_lists( 'Pages' , 'edit-page' , $Data ); ?>
-				<?php echo $this->get_lists( 'Add New Page' , 'page' , $Data ); ?>
-				<?php echo $this->get_lists( 'Comments' , 'edit-comments' , $Data ); ?>
-				<?php echo $this->get_lists( 'Edit Comment' , 'comment' , $Data ); ?>
+			
+				<div class="stuffbox" id="donationbox">
+					<div class="inside">
+						<p style="color: #FFFFFF; font-size: 20px;"><?php _e( 'Please donation.' , $this->ltd ); ?></p>
+						<p style="color: #FFFFFF;"><?php _e( 'You are contented with this plugin?<br />By the laws of Japan, Japan\'s new paypal user can not make a donation button.<br />So i would like you to buy this plugin as the replacement for the donation.' , $this->ltd ); ?></p>
+						<p>&nbsp;</p>
+						<p style="text-align: center;">
+							<a href="http://gqevu6bsiz.chicappa.jp/line-break-first-and-end/?utm_source=use_plugin&utm_medium=donate&utm_campaign=1_2_1" class="button-primary" target="_blank">Line Break First and End</a>
+						</p>
+						<p>&nbsp;</p>
+						<div class="donation_memo">
+							<p><strong><?php _e( 'Features' , $this->ltd ); ?></strong></p>
+							<p><?php _e( 'Line Break First and End plugin is In the visual editor TinyMCE, It is a plugin that will help when you will not be able to enter a line break.' , $this->ltd ); ?></p>
+						</div>
+						<div class="donation_memo">
+							<p><strong><?php _e( 'The primary use of donations' , $this->ltd ); ?></strong></p>
+							<ul>
+								<li>- <?php _e( 'Liquidation of time and value' , $this->ltd ); ?></li>
+								<li>- <?php _e( 'Additional suggestions feature' , $this->ltd ); ?></li>
+								<li>- <?php _e( 'Maintain motivation' , $this->ltd ); ?></li>
+								<li>- <?php _e( 'Ensure time as the father of Sunday' , $this->ltd ); ?></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="stuffbox" id="aboutbox">
+					<h3><span class="hndle"><?php _e( 'About plugin' , $this->ltd ); ?></span></h3>
+					<div class="inside">
+						<p><?php _e( 'Version check' , $this->ltd ); ?> : 3.4.2 - 3.5.1</p>
+						<ul>
+							<li><a href="http://gqevu6bsiz.chicappa.jp/line-break-first-and-end/?utm_source=use_plugin&utm_medium=side&utm_campaign=1_2_1" target="_blank"><?php _e( 'Developer\'s site' , $this->ltd ); ?></a></li>
+							<li><a href="http://wordpress.org/support/plugin/post-lists-view-custom" target="_blank"><?php _e( 'Support Forums' ); ?></a></li>
+							<li><a href="http://wordpress.org/support/view/plugin-reviews/screen-options-and-help-show-customize" target="_blank"><?php _e( 'Reviews' , $this->ltd ); ?></a></li>
+							<li><a href="https://twitter.com/gqevu6bsiz" target="_blank">twitter</a></li>
+							<li><a href="http://www.facebook.com/pages/Gqevu6bsiz/499584376749601" target="_blank">facebook</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="stuffbox" id="usefulbox">
+					<h3><span class="hndle"><?php _e( 'Useful plugins' , $this->ltd ); ?></span></h3>
+					<div class="inside">
+						<p><strong><a href="http://wordpress.org/extend/plugins/post-lists-view-custom/" target="_blank">Post Lists View Custom</a></strong></p>
+						<p class="description"><?php _e( 'Customize the list of the post and page. custom post type page, too. You can customize the column display items freely.' , $this->ltd ); ?></p>
+						<p><strong><a href="http://wordpress.org/extend/plugins/announce-from-the-dashboard/" target="_blank">Announce from the Dashboard</a></strong></p>
+						<p class="description"><?php _e( 'Announce to display the dashboard. Change the display to a different user role.' , $this->ltd ); ?></p>
+						<p><strong><a href="http://wordpress.org/extend/plugins/wp-admin-ui-customize/" target="_blank">WP Admin UI Customize</a></strong></p>
+						<p class="description"><?php _e( 'Customize a variety of screen management.' , $this->ltd ); ?></p>
+						<p>&nbsp;</p>
+					</div>
+				</div>
+
 			</div>
 
 			<div class="clear"></div>
@@ -65,7 +123,7 @@ $Data = $this->get_data();
 		</p>
 
 		<p class="submit reset">
-			<span class="description"><?php _e( 'Would initialize?' , $this->Td ); ?></span>
+			<span class="description"><?php _e( 'Would initialize?' , $this->ltd ); ?></span>
 			<input type="submit" class="button-secondary" name="reset" value="<?php _e( 'Reset' ); ?>" />
 		</p>
 		
@@ -75,7 +133,7 @@ $Data = $this->get_data();
 
 	<div class="postbox widget">
 		<div class="widget-top">
-			<div class="widget-title"><h4><?php _e( 'Plugin About' , $this->Td ); ?></h4></div>
+			<div class="widget-title"><h4><?php _e( 'Import and Export' , $this->ltd ); ?></h4></div>
 		</div>
 		<div class="inside">
 
@@ -98,23 +156,6 @@ $Data = $this->get_data();
 					<input type="file" name="import" size="25" />
 					<input type="submit" class="button-secondary" name="submit" value="<?php _e( 'Upload file and import' ); ?>" />
 				</form>
-			</p>
-
-			<p><strong>Please translate to your language.</strong><br />Looking for someone who will translate.</p>
-			<p>&gt;<a href="http://gqevu6bsiz.chicappa.jp/please-translation/" target="_blank">To translate</a></p>
-
-			<p><strong><?php _e( 'Please donation.' , $this->Td ); ?></strong></p>
-			<p><?php _e( 'When you are satisfied with my plugin, I\'m want a amazon gift card.<br />Thanks!' , $this->Td ); ?></p>
-
-			<p>&gt;<a href="http://gqevu6bsiz.chicappa.jp/please-donation/" target="_blank"><?php _e( 'To donation.' , $this->Td ); ?></a></p>
-			<p><strong><?php _e( 'Other' , $this->Td ); ?></strong></p>
-
-			<p>
-				<span><a href="http://gqevu6bsiz.chicappa.jp/" target="_blank">blog</a></span> &nbsp; 
-				<span><a href="https://twitter.com/gqevu6bsiz" target="_blank">twitter</a></span> &nbsp; 
-				<span><a href="http://www.facebook.com/pages/Gqevu6bsiz/499584376749601" target="_blank">facebook</a></span> &nbsp; 
-				<span><a href="http://wordpress.org/support/plugin/screen-options-and-help-show-customize" target="_blank">support forum</a></span> &nbsp; 
-				<span><a href="http://wordpress.org/support/view/plugin-reviews/screen-options-and-help-show-customize" target="_blank">review</a></span>
 			</p>
 
 		</div>

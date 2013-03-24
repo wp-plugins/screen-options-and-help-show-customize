@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-02-22 18:23+0900\n"
+"PO-Revision-Date: 2013-03-25 00:08+0900\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -19,9 +19,6 @@ msgstr ""
 msgid "Screen Options Customize"
 msgstr ""
 
-msgid "Screen Options and Help Show Customize"
-msgstr ""
-
 msgid "Please set by clicking on the item you want to set."
 msgstr ""
 
@@ -34,20 +31,60 @@ msgstr ""
 msgid "All checked"
 msgstr ""
 
-msgid "Plugin About"
-msgstr ""
-
-msgid "Import and Export"
-msgstr ""
-
-msgid "When you are satisfied with my plugin, I'm want a amazon gift card.<br />Thanks!"
+msgid "Would initialize?"
 msgstr ""
 
 msgid "Please donation."
 msgstr ""
 
-msgid "To donation."
+msgid "You are contented with this plugin?<br />By the laws of Japan, Japan's new paypal user can not make a donation button.<br />So i would like you to buy this plugin as the replacement for the donation."
 msgstr ""
 
-msgid "Would initialize?"
+msgid "Features"
 msgstr ""
+
+msgid "Line Break First and End plugin is In the visual editor TinyMCE, It is a plugin that will help when you will not be able to enter a line break."
+msgstr ""
+
+msgid "The primary use of donations"
+msgstr ""
+
+msgid "Liquidation of time and value"
+msgstr ""
+
+msgid "Additional suggestions feature"
+msgstr ""
+
+msgid "Maintain motivation"
+msgstr ""
+
+msgid "Ensure time as the father of Sunday"
+msgstr ""
+
+msgid "About plugin"
+msgstr ""
+
+msgid "Version check"
+msgstr ""
+
+msgid "Developer's site"
+msgstr ""
+
+msgid "Reviews"
+msgstr ""
+
+msgid "Useful plugins"
+msgstr ""
+
+msgid "Customize the list of the post and page. custom post type page, too. You can customize the column display items freely."
+msgstr ""
+
+msgid "Announce to display the dashboard. Change the display to a different user role."
+msgstr ""
+
+msgid "Customize a variety of screen management."
+msgstr ""
+
+msgid "Import and Export"
+msgstr ""
+
