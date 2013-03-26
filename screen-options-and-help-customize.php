@@ -3,7 +3,7 @@
 Plugin Name: Screen Options and Help Show Customize
 Description: Screen options and help show customize.
 Plugin URI: http://gqevu6bsiz.chicappa.jp
-Version: 1.2.1
+Version: 1.2.2
 Author: gqevu6bsiz
 Author URI: http://gqevu6bsiz.chicappa.jp/author/admin/
 Text Domain: sohc
@@ -43,7 +43,7 @@ class Sohc
 
 
 	function __construct() {
-		$this->Ver = '1.2.1';
+		$this->Ver = '1.2.2';
 		$this->Name = 'Screen Options and Help Show Customize';
 		$this->Dir = WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) . '/';
 		$this->Slug = 'screen_option_and_help_show_customize';
@@ -81,7 +81,7 @@ class Sohc
 	// PluginSetup
 	function plugin_action_links( $links , $file ) {
 		if( plugin_basename(__FILE__) == $file ) {
-			$support_link = '<a href="http://wordpress.org/support/plugin/post-lists-view-custom" target="_blank">' . __( 'Support Forums' ) . '</a>';
+			$support_link = '<a href="http://wordpress.org/support/plugin/screen-options-and-help-show-customize" target="_blank">' . __( 'Support Forums' ) . '</a>';
 			$setting_link = '<a href="' . self_admin_url( 'options-general.php?page=' . $this->Slug ) . '">' . __('Settings') . '</a>';
 
 			array_unshift( $links, $setting_link , $support_link );
@@ -92,7 +92,7 @@ class Sohc
 	// PluginSetup
 	function network_admin_plugin_action_links( $links , $file ) {
 		if( plugin_basename(__FILE__) == $file ) {
-			$support_link = '<a href="http://wordpress.org/support/plugin/post-lists-view-custom" target="_blank">' . __( 'Support Forums' ) . '</a>';
+			$support_link = '<a href="http://wordpress.org/support/plugin/screen-options-and-help-show-customize" target="_blank">' . __( 'Support Forums' ) . '</a>';
 			$setting_link = '<a href="' . self_admin_url( 'settings.php?page=' . $this->Slug ) . '">' . __('Settings') . '</a>';
 
 			array_unshift( $links, $setting_link , $support_link );
@@ -118,7 +118,7 @@ class Sohc
 		// translation
 		$mofile = $this->TransFileCk();
 		if( $mofile == false && empty( $this->Msg ) ) {
-			$this->Msg = '<div class="updated" style="background-color: rgba(255,204,190,1.0); border-color: rgba(160,0,0,1.0);"><p><strong>Please translate to your language.</strong> &gt; <a href="http://gqevu6bsiz.chicappa.jp/please-translation/?utm_source=use_plugin&utm_medium=translation&utm_campaign=1_2_1" target="_blank">To translate</a></p></div>';
+			$this->Msg = '<div class="updated" style="background-color: rgba(255,204,190,1.0); border-color: rgba(160,0,0,1.0);"><p><strong>Please translate to your language.</strong> &gt; <a href="http://gqevu6bsiz.chicappa.jp/please-translation/?utm_source=use_plugin&utm_medium=translation&utm_content=sohc&utm_campaign=1_2_2" target="_blank">To translate</a></p></div>';
 		}
 
 		if( !empty( $_POST["reset"] ) ) {
@@ -140,7 +140,7 @@ class Sohc
 		// translation
 		$mofile = $this->TransFileCk();
 		if( $mofile == false && empty( $this->Msg )  ) {
-			$this->Msg = '<div class="updated" style="background-color: rgba(255,204,190,1.0); border-color: rgba(160,0,0,1.0);"><p><strong>Please translate to your language.</strong> &gt; <a href="http://gqevu6bsiz.chicappa.jp/please-translation/?utm_source=use_plugin&utm_medium=translation&utm_campaign=1_2_1" target="_blank">To translate</a></p></div>';
+			$this->Msg = '<div class="updated" style="background-color: rgba(255,204,190,1.0); border-color: rgba(160,0,0,1.0);"><p><strong>Please translate to your language.</strong> &gt; <a href="http://gqevu6bsiz.chicappa.jp/please-translation/?utm_source=use_plugin&utm_medium=translation&utm_content=sohc&utm_campaign=1_2_2" target="_blank">To translate</a></p></div>';
 		}
 
 		if( !empty( $_POST["reset"] ) ) {
@@ -157,7 +157,7 @@ class Sohc
 	// Layout
 	function admin_footer_text( $text ) {
 		
-		$text = '<img src="' . $this->Dir . 'images/gqevu6bsiz.png" width="18" /> Plugin developer : <a href="http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=footer&utm_campaign=1_2_1" target="_blank">gqevu6bsiz</a>';
+		$text = '<img src="' . $this->Dir . 'images/gqevu6bsiz.png" width="18" /> Plugin developer : <a href="http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=footer&utm_content=sohc&utm_campaign=1_2_2" target="_blank">gqevu6bsiz</a>';
 		
 		return $text;
 	}
