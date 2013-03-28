@@ -1,6 +1,6 @@
 === Screen Options and Help Show Customize ===
 Contributors: gqevu6bsiz
-Donate link: 
+Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=sohsc&utm_campaign=1_2_2
 Tags: admin, dashboard, menu, options, option, help, tabs, role, user, screen options, media, link, pages, page, posts, post
 Requires at least: 3.4.2
 Tested up to: 3.5.1
