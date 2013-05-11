@@ -1,18 +1,19 @@
 === Screen Options and Help Show Customize ===
 Contributors: gqevu6bsiz
-Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=sohsc&utm_campaign=1_2_2
+Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=sohc&utm_campaign=1_2_3
 Tags: admin, dashboard, menu, options, option, help, tabs, role, user, screen options, media, link, pages, page, posts, post
 Requires at least: 3.4.2
 Tested up to: 3.5.1
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPL2
 
-Customization of the Screenoptions and Help.
+Customization of the Screen options and Help.
 
 == Description ==
 
 Set display options and getting help, and set the default page for almost all.
 Further change the display for each user role.
+With Multisite Supported.
 
 == Installation ==
 
@@ -34,6 +35,10 @@ Further change the display for each user role.
 4. Setting List
 
 == Changelog ==
+
+= 1.2.3 =
+Change notation for donation.
+Changed so that it is easy to look at the fields.
 
 = 1.2.2 =
 Link mistake.

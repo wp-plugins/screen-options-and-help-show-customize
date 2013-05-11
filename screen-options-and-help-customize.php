@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Screen Options and Help Show Customize
-Description: Screen options and help show customize.
-Plugin URI: http://gqevu6bsiz.chicappa.jp
-Version: 1.2.2
+Description: Screen options and help to show customize.
+Plugin URI:http://wordpress.org/extend/plugins/screen-options-and-help-show-customize/
+Version: 1.2.3
 Author: gqevu6bsiz
-Author URI: http://gqevu6bsiz.chicappa.jp/author/admin/
+Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=sohc&utm_campaign=1_2.3
 Text Domain: sohc
 Domain Path: /languages
 */
@@ -43,12 +43,14 @@ class Sohc
 
 
 	function __construct() {
-		$this->Ver = '1.2.2';
+		$this->Ver = '1.2.3';
 		$this->Name = 'Screen Options and Help Show Customize';
 		$this->Dir = WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) . '/';
 		$this->Slug = 'screen_option_and_help_show_customize';
 		$this->RecordName = 'sohc_options';
 		$this->ltd = 'sohc';
+		$this->ltd_p = $this->ltd . '_plugin';
+		$this->DonateKey = 'd77aec9bc89d445fd54b4c988d090f03';
 		$this->UPFN = 'Y';
 
 		$this->PluginSetup();
@@ -61,6 +63,7 @@ class Sohc
 	function PluginSetup() {
 		// load text domain
 		load_plugin_textdomain( $this->ltd , false , basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( $this->ltd_p , false , basename( dirname( __FILE__ ) ) . '/languages' );
 
 		// plugin links
 		add_filter( 'plugin_action_links' , array( $this , 'plugin_action_links' ) , 10 , 2 );
@@ -121,7 +124,13 @@ class Sohc
 			$this->Msg = '<div class="updated" style="background-color: rgba(255,204,190,1.0); border-color: rgba(160,0,0,1.0);"><p><strong>Please translate to your language.</strong> &gt; <a href="http://gqevu6bsiz.chicappa.jp/please-translation/?utm_source=use_plugin&utm_medium=translation&utm_content=sohc&utm_campaign=1_2_2" target="_blank">To translate</a></p></div>';
 		}
 
-		if( !empty( $_POST["reset"] ) ) {
+		if( !empty( $_POST["donate_key"] ) ) {
+			$SubmitKey = md5( strip_tags( $_POST["donate_key"] ) );
+			if( $this->DonateKey == $SubmitKey ) {
+				update_option( $this->ltd . '_donated' , $SubmitKey );
+				$this->Msg .= '<div class="updated"><p><strong>' . __( 'Thank you for your donation.' , $this->ltd_p ) . '</strong></p></div>';
+			}
+		} elseif( !empty( $_POST["reset"] ) ) {
 			$this->update_reset();
 		} elseif( !empty( $_POST[$this->UPFN] ) ) {
 			$this->update();
@@ -157,8 +166,8 @@ class Sohc
 	// Layout
 	function admin_footer_text( $text ) {
 		
-		$text = '<img src="' . $this->Dir . 'images/gqevu6bsiz.png" width="18" /> Plugin developer : <a href="http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=footer&utm_content=sohc&utm_campaign=1_2_2" target="_blank">gqevu6bsiz</a>';
-		
+		$text = '<img src="http://www.gravatar.com/avatar/7e05137c5a859aa987a809190b979ed4?s=18" width="18" /> Plugin developer : <a href="http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=footer&utm_content=' . $this->ltd . '&utm_campaign=' . str_replace( '.' , '_' , $this->Ver ) . '" target="_blank">gqevu6bsiz</a>';
+
 		return $text;
 	}
 
@@ -228,13 +237,13 @@ class Sohc
 					
 					$helponly = $this->helponly( $screenid );
 					if( empty( $helponly ) ) {
-						$Contents .= '<th><label>';
+						$Contents .= '<th>';
 							$Contents .= __( 'Screen Options' );
-						$Contents .= '</label></th>';
+						$Contents .= '</th>';
 					}
-					$Contents .= '<th><label>';
+					$Contents .= '<th>';
 						$Contents .= __( 'Help' );
-					$Contents .= '</label></th>';
+					$Contents .= '</th>';
 				$Contents .= '</tr>';
 			$Contents .= '</thead>';
 			$Contents .= '<tbody>';

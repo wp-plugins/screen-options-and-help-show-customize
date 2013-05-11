@@ -1,8 +1,8 @@
 jQuery(document).ready(function($) {
 
-	var $Form = $("#sohc");
+	var $Form = $("#sohc_form");
 
-	$('#postbox-container-1 .handlediv, #postbox-container-1 h3' , $Form).click(function() {
+	$('.handlediv, h3' , $Form).click(function() {
 		$(this).parent().toggleClass('closed');
 	});
 
