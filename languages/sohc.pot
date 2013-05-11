@@ -1,0 +1,39 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2013-05-11 13:15+0900\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Last-Translator: Gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
+
+msgid "Screen options and help to show customize."
+msgstr ""
+
+msgid "Screen Options Customize"
+msgstr ""
+
+msgid "Please set by clicking on the item you want to set."
+msgstr ""
+
+msgid "Please check the items you want to hide."
+msgstr ""
+
+msgid "Data set in the network management screen is applied to all site management screen."
+msgstr ""
+
+msgid "All checked"
+msgstr ""
+
+msgid "Would initialize?"
+msgstr ""
+
+msgid "Import and Export"
+msgstr ""
+
