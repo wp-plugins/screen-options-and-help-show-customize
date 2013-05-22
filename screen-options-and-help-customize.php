@@ -3,9 +3,9 @@
 Plugin Name: Screen Options and Help Show Customize
 Description: Screen options and help to show customize.
 Plugin URI:http://wordpress.org/extend/plugins/screen-options-and-help-show-customize/
-Version: 1.2.3
+Version: 1.2.4
 Author: gqevu6bsiz
-Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=sohc&utm_campaign=1_2.3
+Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=sohc&utm_campaign=1_2_4
 Text Domain: sohc
 Domain Path: /languages
 */
@@ -43,7 +43,7 @@ class Sohc
 
 
 	function __construct() {
-		$this->Ver = '1.2.3';
+		$this->Ver = '1.2.4';
 		$this->Name = 'Screen Options and Help Show Customize';
 		$this->Dir = WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) . '/';
 		$this->Slug = 'screen_option_and_help_show_customize';
@@ -212,7 +212,7 @@ class Sohc
 	}
 
 	// Setting Item
-	function get_lists( $type , $screenid , $Data ) {
+	function get_lists( $type , $screenid , $Data , $tab_help , $tab_so ) {
 		$Contents = '';
 
 		$Closed = 'closed';
@@ -235,15 +235,17 @@ class Sohc
 						$Contents .= __( 'User Roles' );
 					$Contents .= '</th>';
 					
-					$helponly = $this->helponly( $screenid );
-					if( empty( $helponly ) ) {
+					if( !empty( $tab_so ) ) {
 						$Contents .= '<th>';
 							$Contents .= __( 'Screen Options' );
 						$Contents .= '</th>';
 					}
-					$Contents .= '<th>';
-						$Contents .= __( 'Help' );
-					$Contents .= '</th>';
+					if( !empty( $tab_help ) ) {
+						$Contents .= '<th>';
+							$Contents .= __( 'Help' );
+						$Contents .= '</th>';
+					}
+
 				$Contents .= '</tr>';
 			$Contents .= '</thead>';
 			$Contents .= '<tbody>';
@@ -253,7 +255,7 @@ class Sohc
 					$Contents .= '<td>';
 						$Contents .= __( $name_d );
 					$Contents .= '</td>';
-					if( empty( $helponly ) ) {
+					if( !empty( $tab_so ) ) {
 						$Contents .= '<td>';
 							$Checked = '';
 							if( !empty( $Data[$name][$screenid]["screenoptions"] ) ) {
@@ -262,13 +264,15 @@ class Sohc
 							$Contents .= '<label><input type="checkbox" name="data[' . $name . '][' . $screenid . '][]" value="screenoptions" ' . $Checked . '> ' . __( 'Hide' ) . '</labe>';
 						$Contents .= '</td>';
 					}
-					$Contents .= '<td>';
-						$Checked = '';
-						if( !empty( $Data[$name][$screenid]["help"] ) ) {
-							$Checked = 'checked="checked"';
-						}
-						$Contents .= '<label><input type="checkbox" name="data[' . $name . '][' . $screenid . '][]" value="help" ' . $Checked . '> ' . __( 'Hide' ) . '</labe>';
-					$Contents .= '</td>';
+					if( !empty( $tab_help ) ) {
+						$Contents .= '<td>';
+							$Checked = '';
+							if( !empty( $Data[$name][$screenid]["help"] ) ) {
+								$Checked = 'checked="checked"';
+							}
+							$Contents .= '<label><input type="checkbox" name="data[' . $name . '][' . $screenid . '][]" value="help" ' . $Checked . '> ' . __( 'Hide' ) . '</labe>';
+						$Contents .= '</td>';
+					}
 				$Contents .= '</tr>';
 			}
 
@@ -278,11 +282,14 @@ class Sohc
 			$Contents .= '<tfoot>';
 				$Contents .= '<tr>';
 					$Contents .= '<td>&nbsp;</td>';
-					if( empty( $helponly ) ) {
+					if( !empty( $tab_so ) ) {
 						$Contents .= '<td><label><input type="checkbox" name="all_checked" title="' . $screenid . '" class="screenoptions" /> ' . __( 'All checked' , $this->ltd ) . '</label></td>';
 					}
+					if( !empty( $tab_help ) ) {
+						$Contents .= '<td><label><input type="checkbox" name="all_checked" title="' . $screenid . '" class="help" /> ' . __( 'All checked' , $this->ltd ) . '</label></td>';
+					}
 					
-					$Contents .= '<td><label><input type="checkbox" name="all_checked" title="' . $screenid . '" class="help" /> ' . __( 'All checked' , $this->ltd ) . '</label></td>';
+					
 				$Contents .= '</tr>';
 			$Contents .= '</tfoot>';
 
@@ -294,10 +301,54 @@ class Sohc
 	}
 
 	// Setting Item
-	function helponly( $screenid ) {
-		$helparr = array( 'my-sites' , 'profile' , 'media' , 'comment' , 'themes' , 'theme-install' , 'user' , 'tools' );
-		return in_array( $screenid , $helparr );
+	function get_custom_posts() {
+		$CustomPosts = array();
+		
+		$Data = get_site_option( $this->RecordName );
+
+		if( is_network_admin() ) {
+
+			global $wpdb;
+			
+			$query = "SELECT blog_id FROM {$wpdb->blogs} WHERE site_id = '{$wpdb->siteid}'";
+			$Blogs = $wpdb->get_results( $query, ARRAY_A );
+			
+			foreach( $Blogs as $key => $blog ) {
+
+				switch_to_blog( $blog["blog_id"] );
+				global $wpdb;
+				$And = "AND post_type !=  'page' AND post_type !=  'revision' AND post_type !=  'attachment' AND post_type !=  'nav_menu_item'";
+				$row = $wpdb->get_col( "SELECT DISTINCT post_type FROM $wpdb->posts WHERE post_type != 'post' " . $And );
+				
+				if( !empty( $row ) ) {
+					foreach( $row as $custom_post_name ) {
+						$CustomPosts[$custom_post_name] = array( "edit" => $custom_post_name , "add" => "Add New " . $custom_post_name );
+					}
+				}
+
+			}
+			
+			restore_current_blog();
+
+		} else {
+
+			$args = array( 'public' => true , '_builtin' => false , 'show_ui' => true );
+			$cpt = get_post_types( $args , 'objects' );
+			
+			if( !empty( $cpt ) ) {
+				foreach( $cpt as $custom_post_name => $cp ) {
+					$CustomPosts[$custom_post_name] = array( "edit" => $cp->labels->name , "add" => $cp->labels->add_new_item );
+				}
+			}
+
+		}
+		
+		return $CustomPosts;
 	}
+
+
+
+
 
 	// Update Setting
 	function update() {
@@ -454,7 +505,7 @@ class Sohc
 	function FilterStart() {
 		add_action( 'admin_head' , array( $this , 'ScreenMeta' ) );
 	}
-	
+
 	// FilterStart
 	function ScreenMeta() {
 
@@ -484,6 +535,7 @@ class Sohc
 					$screen->remove_help_tabs();
 				}
 			}
+			
 		}
 
 	}
