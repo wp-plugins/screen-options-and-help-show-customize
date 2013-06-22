@@ -3,9 +3,9 @@
 Plugin Name: Screen Options and Help Show Customize
 Description: Screen options and help to show customize.
 Plugin URI:http://wordpress.org/extend/plugins/screen-options-and-help-show-customize/
-Version: 1.2.4
+Version: 1.2.4.1
 Author: gqevu6bsiz
-Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=sohc&utm_campaign=1_2_4
+Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=sohc&utm_campaign=1_2_4_1
 Text Domain: sohc
 Domain Path: /languages
 */
@@ -43,7 +43,7 @@ class Sohc
 
 
 	function __construct() {
-		$this->Ver = '1.2.4';
+		$this->Ver = '1.2.4.1';
 		$this->Name = 'Screen Options and Help Show Customize';
 		$this->Dir = WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) . '/';
 		$this->Slug = 'screen_option_and_help_show_customize';

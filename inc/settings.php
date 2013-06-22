@@ -87,7 +87,7 @@ $CustomPosts = $this->get_custom_posts();
 				</p>
 		
 				<p class="submit reset">
-					<span class="description"><?php _e( 'Would initialize?' , $this->ltd ); ?></span>
+					<span class="description"><?php _e( 'Reset all settings?' , $this->ltd ); ?></span>
 					<input type="submit" class="button-secondary" name="reset" value="<?php _e( 'Reset' ); ?>" />
 				</p>
 				
@@ -147,7 +147,7 @@ $CustomPosts = $this->get_custom_posts();
 			<div class="stuffbox" id="aboutbox">
 				<h3><span class="hndle"><?php _e( 'About plugin' , $this->ltd ); ?></span></h3>
 				<div class="inside">
-					<p><?php _e( 'Version check' , $this->ltd ); ?> : 3.4.2 - 3.5.1</p>
+					<p><?php _e( 'Version check' , $this->ltd ); ?> : 3.4.2 - 3.5.2</p>
 					<ul>
 						<li><a href="http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank"><?php _e( 'Developer\'s site' , $this->ltd_p ); ?></a></li>
 						<li><a href="http://wordpress.org/support/plugin/screen-options-and-help-show-customize" target="_blank"><?php _e( 'Support Forums' ); ?></a></li>

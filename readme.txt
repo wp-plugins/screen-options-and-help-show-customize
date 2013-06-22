@@ -1,10 +1,10 @@
 === Screen Options and Help Show Customize ===
 Contributors: gqevu6bsiz
-Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=sohc&utm_campaign=1_2_4
+Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=sohc&utm_campaign=1_2_4_1
 Tags: admin, dashboard, menu, options, option, help, tabs, role, user, screen options, media, link, pages, page, posts, post
 Requires at least: 3.4.2
-Tested up to: 3.5.1
-Stable tag: 1.2.4
+Tested up to: 3.5.2
+Stable tag: 1.2.4.1
 License: GPL2
 
 Customization of the Screen options and Help.
@@ -35,6 +35,10 @@ With Multisite Supported.
 4. Setting List
 
 == Changelog ==
+
+= 1.2.4.1 =
+* Change the mouse cursor.
+* Change some translations.
 
 = 1.2.4 =
 Added a custom post types.
