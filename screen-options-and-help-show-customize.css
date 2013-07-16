@@ -1,5 +1,5 @@
 #sohc.columns-2 {
-	margin-right: 300px;
+	margin-right: 360px;
 }
 #sohc .postbox-container#postbox-container-1 {
 	float: left;
@@ -7,8 +7,8 @@
 }
 #sohc .postbox-container#postbox-container-2 {
 	float: right;
-	width: 280px;
-	margin-right: -300px;
+	width: 340px;
+	margin-right: -360px;
 }
 
 #sohc .postbox .hndle {
@@ -22,7 +22,7 @@
 
 #sohc .postbox-container #donationbox {
 	background: #87BCE4;
-	border: 3px solid #227499;
+	border: 1px solid #227499;
 }
 #sohc .postbox-container #donationbox .inside {
 	padding: 6px 10px 10px 10px;

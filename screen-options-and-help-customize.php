@@ -3,9 +3,9 @@
 Plugin Name: Screen Options and Help Show Customize
 Description: Screen options and help to show customize.
 Plugin URI:http://wordpress.org/extend/plugins/screen-options-and-help-show-customize/
-Version: 1.2.4.1
+Version: 1.2.4.2
 Author: gqevu6bsiz
-Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=sohc&utm_campaign=1_2_4_1
+Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=sohc&utm_campaign=1_2_4_2
 Text Domain: sohc
 Domain Path: /languages
 */
@@ -38,18 +38,22 @@ class Sohc
 		$Dir,
 		$Slug,
 		$RecordName,
+		$ltd,
+		$ltd_p,
+		$Nonces,
 		$UPFN,
 		$Msg;
 
 
 	function __construct() {
-		$this->Ver = '1.2.4.1';
+		$this->Ver = '1.2.4.2';
 		$this->Name = 'Screen Options and Help Show Customize';
 		$this->Dir = WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) . '/';
 		$this->Slug = 'screen_option_and_help_show_customize';
 		$this->RecordName = 'sohc_options';
 		$this->ltd = 'sohc';
 		$this->ltd_p = $this->ltd . '_plugin';
+		$this->Nonces = array( "value" => $this->ltd . '_value' , "field" => $this->ltd . '_field' );
 		$this->DonateKey = 'd77aec9bc89d445fd54b4c988d090f03';
 		$this->UPFN = 'Y';
 
@@ -353,7 +357,7 @@ class Sohc
 	// Update Setting
 	function update() {
 		$UPFN = strip_tags( $_POST[$this->UPFN] );
-		if( $UPFN == 'Y' ) {
+		if( $UPFN == 'Y' && check_admin_referer( $this->Nonces["value"] , $this->Nonces["field"] ) ) {
 			unset( $_POST[$this->UPFN] );
 
 			$Update = array();
@@ -379,7 +383,7 @@ class Sohc
 	// Update Setting
 	function update_multi() {
 		$UPFN = strip_tags( $_POST[$this->UPFN] );
-		if( $UPFN == 'Y' ) {
+		if( $UPFN == 'Y' && check_admin_referer( $this->Nonces["value"] , $this->Nonces["field"] ) ) {
 			unset( $_POST[$this->UPFN] );
 
 			$Update = array();
@@ -404,23 +408,27 @@ class Sohc
 
 	// Update Reset
 	function update_reset() {
-		$Record = $this->RecordName;
-		delete_option( $Record );
-		$this->Msg = '<div class="updated"><p><strong>' . __('Settings saved.') . '</strong></p></div>';
+		if( check_admin_referer( $this->Nonces["value"] , $this->Nonces["field"] ) ) {
+			$Record = $this->RecordName;
+			delete_option( $Record );
+			$this->Msg = '<div class="updated"><p><strong>' . __('Settings saved.') . '</strong></p></div>';
+		}
 	}
 
 	// Update Reset
 	function update_reset_multi() {
-		$Record = $this->RecordName;
-		delete_site_option( $Record );
-		$this->Msg = '<div class="updated"><p><strong>' . __('Settings saved.') . '</strong></p></div>';
+		if( check_admin_referer( $this->Nonces["value"] , $this->Nonces["field"] ) ) {
+			$Record = $this->RecordName;
+			delete_site_option( $Record );
+			$this->Msg = '<div class="updated"><p><strong>' . __('Settings saved.') . '</strong></p></div>';
+		}
 	}
 
 
 	// Data Export
 	function export() {
 		$Data = $this->get_data();
-		if( !empty( $Data ) && !empty( $_GET["download"] ) ) {
+		if( !empty( $Data ) && !empty( $_GET["download"] ) && check_admin_referer( $this->Nonces["value"] , $this->Nonces["field"] ) ) {
 
 			$filename = $this->Slug . '.csv';
 			header( 'Content-Description: File Transfer' );
@@ -457,7 +465,7 @@ class Sohc
 	// Data Import
 	function import() {
 
-		if( !empty( $_POST["upload"] ) && !empty( $_FILES["import"] ) ) {
+		if( !empty( $_POST["upload"] ) && !empty( $_FILES["import"] ) && check_admin_referer( $this->Nonces["value"] , $this->Nonces["field"] ) ) {
 
 			$file = $_FILES["import"];
 			if ( !empty( $file['error'] ) or empty( $file['tmp_name'] ) or !strpos( $file['name'] , 'csv') ) {

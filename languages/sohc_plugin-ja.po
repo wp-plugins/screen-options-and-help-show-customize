@@ -2,13 +2,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Screen Options and Help Show Customize\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-22 15:01+0900\n"
+"PO-Revision-Date: 2013-07-16 17:13+0900\n"
 "Language-Team: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "Last-Translator: Gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+
+msgid "Have you want to customize?"
+msgstr "何かカスタマイズしたい事はありますか？"
+
+msgid "I am good at Admin Screen Customize."
+msgstr "私は管理画面のカスタマイズを得意とします。"
+
+msgid "Please consider the request to me if it is good."
+msgstr "宜しければご検討ください。"
+
+msgid "Example Customize"
+msgstr "カスタマイズ例"
+
+msgid "Contact me"
+msgstr "お問い合わせ"
 
 msgid "Thank you for your donation."
 msgstr "寄付いただきありがとうございます。"

@@ -28,7 +28,7 @@ $CustomPosts = $this->get_custom_posts();
 
 			<form id="sohc_form" method="post" action="">
 				<input type="hidden" name="<?php echo $this->UPFN; ?>" value="Y">
-				<?php wp_nonce_field(); ?>
+				<?php wp_nonce_field( $this->Nonces["value"] , $this->Nonces["field"] ); ?>
 
 				<?php echo $this->get_lists( 'Dashboard' , 'dashboard' , $Data , true , true ); ?>
 
@@ -62,7 +62,7 @@ $CustomPosts = $this->get_custom_posts();
 				<?php echo $this->get_lists( 'Menus' , 'nav-menus' , $Data , true , true ); ?>
 
 				<?php echo $this->get_lists( 'Users' , 'users' , $Data , true , false ); ?>
-				<?php echo $this->get_lists( 'Add New User' , 'user' , $Data , true , true ); ?>
+				<?php echo $this->get_lists( 'Add New User' , 'user' , $Data , true , false ); ?>
 				<?php echo $this->get_lists( 'Profile' , 'profile' , $Data , true , false ); ?>
 
 				<?php echo $this->get_lists( 'Tools' , 'tools' , $Data , true , false ); ?>
@@ -97,6 +97,21 @@ $CustomPosts = $this->get_custom_posts();
 			
 		<div class="postbox-container" id="postbox-container-2">
 			
+			<div class="stuffbox" style="border-color: #FFC426; border-width: 3px;">
+				<h3 style="background: #FFF2D0; border-color: #FFC426;"><span class="hndle"><?php _e( 'Have you want to customize?' , $this->ltd_p ); ?></span></h3>
+				<div class="inside">
+					<p style="float: right;">
+						<img src="http://www.gravatar.com/avatar/7e05137c5a859aa987a809190b979ed4?s=46" width="46" /><br />
+						<a href="http://gqevu6bsiz.chicappa.jp/contact-us/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank">gqevu6bsiz</a>
+					</p>
+					<p><?php _e( 'I am good at Admin Screen Customize.' , $this->ltd_p ); ?></p>
+					<p><?php _e( 'Please consider the request to me if it is good.' , $this->ltd_p ); ?></p>
+					<p>
+						<a href="http://wpadminuicustomize.com/blog/category/example/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank"><?php _e ( 'Example Customize' , $this->ltd_p ); ?></a> :
+						<a href="http://gqevu6bsiz.chicappa.jp/contact-us/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank"><?php _e( 'Contact me' , $this->ltd_p ); ?></a></p>
+				</div>
+			</div>
+
 			<?php $donatedKey = get_option( $this->ltd . '_donated' ); ?>
 
 			<?php if( $donatedKey == $this->DonateKey ) : ?>
@@ -145,9 +160,9 @@ $CustomPosts = $this->get_custom_posts();
 			<?php endif; ?>
 
 			<div class="stuffbox" id="aboutbox">
-				<h3><span class="hndle"><?php _e( 'About plugin' , $this->ltd ); ?></span></h3>
+				<h3><span class="hndle"><?php _e( 'About plugin' , $this->ltd_p ); ?></span></h3>
 				<div class="inside">
-					<p><?php _e( 'Version check' , $this->ltd ); ?> : 3.4.2 - 3.5.2</p>
+					<p><?php _e( 'Version check' , $this->ltd_p ); ?> : 3.4.2 - 3.6 RC1</p>
 					<ul>
 						<li><a href="http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank"><?php _e( 'Developer\'s site' , $this->ltd_p ); ?></a></li>
 						<li><a href="http://wordpress.org/support/plugin/screen-options-and-help-show-customize" target="_blank"><?php _e( 'Support Forums' ); ?></a></li>
@@ -159,7 +174,7 @@ $CustomPosts = $this->get_custom_posts();
 			</div>
 
 			<div class="stuffbox" id="usefulbox">
-				<h3><span class="hndle"><?php _e( 'Useful plugins' , $this->ltd ); ?></span></h3>
+				<h3><span class="hndle"><?php _e( 'Useful plugins' , $this->ltd_p ); ?></span></h3>
 				<div class="inside">
 					<p><strong><a href="http://wpadminuicustomize.com/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank">WP Admin UI Customize</a></strong></p>
 					<p class="description"><?php _e( 'Customize a variety of screen management.' , $this->ltd_p ); ?></p>
@@ -188,7 +203,7 @@ $CustomPosts = $this->get_custom_posts();
 			<p><strong><?php _e( 'Export' ); ?></strong></p>
 			<p>
 				<form id="file_export" method="get" action="">
-					<?php wp_nonce_field(); ?>
+					<?php wp_nonce_field( $this->Nonces["value"] , $this->Nonces["field"] ); ?>
 					<input type="hidden" name="page" value="<?php echo $this->Slug; ?>" />
 					<input type="hidden" name="download" value="true" />
 					<input type="submit" class="button-secondary" name="export" value="<?php _e( 'Download Export File' ); ?>" />
@@ -198,7 +213,7 @@ $CustomPosts = $this->get_custom_posts();
 			<p><strong><?php _e( 'Import' ); ?></strong></p>
 			<p>
 				<form id="file_import" method="post" action="" enctype="multipart/form-data">
-					<?php wp_nonce_field(); ?>
+					<?php wp_nonce_field( $this->Nonces["value"] , $this->Nonces["field"] ); ?>
 					<input type="hidden" name="upload" value="true" />
 					<label for="import"><?php _e( 'Choose a file from your computer:' ); ?></label>
 					<input type="file" name="import" size="25" />
