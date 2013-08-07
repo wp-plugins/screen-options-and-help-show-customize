@@ -1,10 +1,10 @@
 === Screen Options and Help Show Customize ===
 Contributors: gqevu6bsiz
-Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=sohc&utm_campaign=1_2_4_2
+Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=sohc&utm_campaign=1_2_5
 Tags: admin, dashboard, menu, options, option, help, tabs, role, user, screen options, media, link, pages, page, posts, post
 Requires at least: 3.4.2
-Tested up to: 3.6 RC1
-Stable tag: 1.2.4.2
+Tested up to: 3.6
+Stable tag: 1.2.5
 License: GPL2
 
 Customization of the Screen options and Help.
@@ -30,11 +30,16 @@ With Multisite Supported.
 == Screenshots ==
 
 1. Menu position
-2. While setting
-3. After setting the
-4. Setting List
+2. Simply settings
+3. Screen Example
+4. Setting Example
 
 == Changelog ==
+
+= 1.2.5 =
+* Support SSL.
+* Added to Custom Taxonomies.
+* Added to Generals on Multisite.
 
 = 1.2.4.2 =
 * Added a confirmation of Nonce field.

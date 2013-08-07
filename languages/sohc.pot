@@ -2,13 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Screen Options and Help Show Customize\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-06-22 15:02+0900\n"
+"PO-Revision-Date: 2013-08-07 16:02+0900\n"
 "Language-Team: gqevu6bsiz <gqevu6bsiz>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "Last-Translator: Gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
 
 msgid "Screen options and help to show customize."
 msgstr ""
@@ -26,6 +28,15 @@ msgid "Data set in the network management screen is applied to all site manageme
 msgstr ""
 
 msgid "Custom post types"
+msgstr ""
+
+msgid "It can be select when posted of the Custom Post types exists."
+msgstr ""
+
+msgid "Custom taxonomies"
+msgstr ""
+
+msgid "It can be select when created of the Custom Taxonomies exists."
 msgstr ""
 
 msgid "All checked"

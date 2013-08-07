@@ -2,12 +2,13 @@
 
 // include js css
 $ReadedJs = array( 'jquery' , 'jquery-ui-sortable' );
-wp_enqueue_script( $this->Slug ,  $this->Dir . dirname( dirname( plugin_basename( __FILE__ ) ) ) . '.js', $ReadedJs , $this->Ver );
-wp_enqueue_style( $this->Slug , $this->Dir . dirname( dirname( plugin_basename( __FILE__ ) ) ) . '.css', array() , $this->Ver );
+wp_enqueue_script( $this->PageSlug ,  $this->Url . $this->PluginSlug . '.js', $ReadedJs , $this->Ver );
+wp_enqueue_style( $this->PageSlug , $this->Url . $this->PluginSlug . '.css', array() , $this->Ver );
 
 // get data
 $Data = $this->get_data();
 $CustomPosts = $this->get_custom_posts();
+$CustomTaxs = $this->get_custom_taxs();
 
 ?>
 
@@ -36,40 +37,74 @@ $CustomPosts = $this->get_custom_posts();
 					<?php echo $this->get_lists( 'My Sites' , 'my-sites' , $Data , true , false ); ?>
 				<?php endif; ?>
 
+				<div class="clear"></div>
+
 				<?php echo $this->get_lists( 'All Posts' , 'edit-post' , $Data , true , true ); ?>
 				<?php echo $this->get_lists( 'New Post' , 'post' , $Data , true , true ); ?>
 
 				<?php echo $this->get_lists( 'Categories' , 'edit-category' , $Data , true , true ); ?>
 				<?php echo $this->get_lists( 'Tags' , 'edit-post_tag' , $Data , true , true ); ?>
 
+				<div class="clear"></div>
+
 				<?php echo $this->get_lists( 'Media Library' , 'upload' , $Data , true , true ); ?>
 				<?php echo $this->get_lists( 'Upload New Media' , 'media' , $Data , true , false ); ?>
+
+				<div class="clear"></div>
 
 				<?php echo $this->get_lists( 'Links' , 'link-manager' , $Data , true , true ); ?>
 				<?php echo $this->get_lists( 'Add New Link' , 'link' , $Data , true , true ); ?>
 				<?php echo $this->get_lists( 'Link Categories' , 'edit-link_category' , $Data , true , true ); ?>
 
+				<div class="clear"></div>
+
 				<?php echo $this->get_lists( 'Pages' , 'edit-page' , $Data , true , true ); ?>
 				<?php echo $this->get_lists( 'Add New Page' , 'page' , $Data , true , true ); ?>
+
+				<div class="clear"></div>
 
 				<?php echo $this->get_lists( 'Comments' , 'edit-comments' , $Data , true , true ); ?>
 				<?php echo $this->get_lists( 'Edit Comment' , 'comment' , $Data , true , false ); ?>
 
+				<div class="clear"></div>
+
 				<?php echo $this->get_lists( 'Manage Themes' , 'themes' , $Data , true , false ); ?>
-				<?php echo $this->get_lists( 'Install Themes' , 'theme-install' , $Data , true , false ); ?>
+				<?php if( !defined( 'WP_ALLOW_MULTISITE' ) ) : ?>
+					<?php echo $this->get_lists( 'Install Themes' , 'theme-install' , $Data , true , false ); ?>
+				<?php endif; ?>
+
+				<div class="clear"></div>
 
 				<?php echo $this->get_lists( 'Widgets' , 'widgets' , $Data , true , true ); ?>
 				<?php echo $this->get_lists( 'Menus' , 'nav-menus' , $Data , true , true ); ?>
 
-				<?php echo $this->get_lists( 'Users' , 'users' , $Data , true , false ); ?>
+				<div class="clear"></div>
+
+				<?php echo $this->get_lists( 'Users' , 'users' , $Data , true , true ); ?>
 				<?php echo $this->get_lists( 'Add New User' , 'user' , $Data , true , false ); ?>
 				<?php echo $this->get_lists( 'Profile' , 'profile' , $Data , true , false ); ?>
+
+				<div class="clear"></div>
 
 				<?php echo $this->get_lists( 'Tools' , 'tools' , $Data , true , false ); ?>
 				
 				<div class="clear"></div>
 				
+				<?php if( defined( 'WP_ALLOW_MULTISITE' ) ) : ?>
+					<?php echo $this->get_lists( 'General Settings' , 'options-general' , $Data , true , false ); ?>
+					<?php echo $this->get_lists( 'Writing Settings' , 'options-writing' , $Data , true , false ); ?>
+					<?php echo $this->get_lists( 'Reading Settings' , 'options-reading' , $Data , true , false ); ?>
+					<?php echo $this->get_lists( 'Discussion' , 'options-discussion' , $Data , true , false ); ?>
+					<?php echo $this->get_lists( 'Media' , 'options-media' , $Data , true , false ); ?>
+					<?php echo $this->get_lists( 'Permalink Settings' , 'options-permalink' , $Data , true , false ); ?>
+					<div class="clear"></div>
+				<?php endif; ?>
+
 				<h3><?php _e( 'Custom post types' , $this->ltd ); ?></h3>
+
+				<?php if( defined( 'WP_ALLOW_MULTISITE' ) ) : ?>
+					<p class="description"><?php _e( 'It can be select when posted of the Custom Post types exists.' , $this->ltd ); ?></p>
+				<?php endif; ?>
 
 				<?php if( !empty( $CustomPosts ) ) : ?>
 					<?php foreach( $CustomPosts as $custom_id => $Cpt ) : ?>
@@ -82,6 +117,22 @@ $CustomPosts = $this->get_custom_posts();
 					<?php endforeach; ?>
 				<?php endif; ?>
 				
+				<h3><?php _e( 'Custom taxonomies' , $this->ltd ); ?></h3>
+
+				<?php if( defined( 'WP_ALLOW_MULTISITE' ) ) : ?>
+					<p class="description"><?php _e( 'It can be select when created of the Custom Taxonomies exists.' , $this->ltd ); ?></p>
+				<?php endif; ?>
+
+				<?php if( !empty( $CustomTaxs ) ) : ?>
+					<?php foreach( $CustomTaxs as $custom_id => $Ctax ) : ?>
+
+						<?php echo $this->get_lists( $Ctax["edit"] , 'edit-' . $custom_id , $Data , false , true ); ?>
+						
+					<?php endforeach; ?>
+
+					<div class="clear"></div>
+				<?php endif; ?>
+
 				<p class="submit">
 					<input type="submit" class="button-primary" name="update" value="<?php _e( 'Save' ); ?>" />
 				</p>
@@ -101,14 +152,14 @@ $CustomPosts = $this->get_custom_posts();
 				<h3 style="background: #FFF2D0; border-color: #FFC426;"><span class="hndle"><?php _e( 'Have you want to customize?' , $this->ltd_p ); ?></span></h3>
 				<div class="inside">
 					<p style="float: right;">
-						<img src="http://www.gravatar.com/avatar/7e05137c5a859aa987a809190b979ed4?s=46" width="46" /><br />
-						<a href="http://gqevu6bsiz.chicappa.jp/contact-us/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank">gqevu6bsiz</a>
+						<img src="<?php echo $this->Schema; ?>www.gravatar.com/avatar/7e05137c5a859aa987a809190b979ed4?s=46" width="46" /><br />
+						<a href="<?php echo $this->AuthorUrl; ?>contact-us/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank">gqevu6bsiz</a>
 					</p>
 					<p><?php _e( 'I am good at Admin Screen Customize.' , $this->ltd_p ); ?></p>
 					<p><?php _e( 'Please consider the request to me if it is good.' , $this->ltd_p ); ?></p>
 					<p>
 						<a href="http://wpadminuicustomize.com/blog/category/example/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank"><?php _e ( 'Example Customize' , $this->ltd_p ); ?></a> :
-						<a href="http://gqevu6bsiz.chicappa.jp/contact-us/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank"><?php _e( 'Contact me' , $this->ltd_p ); ?></a></p>
+						<a href="<?php echo $this->AuthorUrl; ?>contact-us/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank"><?php _e( 'Contact me' , $this->ltd_p ); ?></a></p>
 				</div>
 			</div>
 
@@ -126,7 +177,7 @@ $CustomPosts = $this->get_custom_posts();
 						<p style="color: #FFFFFF;"><?php _e( 'You are contented with this plugin?<br />By the laws of Japan, Japan\'s new paypal user can not make a donation button.<br />So i would like you to buy this plugin as the replacement for the donation.' , $this->ltd_p ); ?></p>
 						<p>&nbsp;</p>
 						<p style="text-align: center;">
-							<a href="http://gqevu6bsiz.chicappa.jp/line-break-first-and-end/?utm_source=use_plugin&utm_medium=donate&utm_content=sohc&utm_campaign=1_2_2" class="button-primary" target="_blank">Line Break First and End</a>
+							<a href="<?php echo $this->AuthorUrl; ?>line-break-first-and-end/?utm_source=use_plugin&utm_medium=donate&utm_content=sohc&utm_campaign=1_2_2" class="button-primary" target="_blank">Line Break First and End</a>
 						</p>
 						<p>&nbsp;</p>
 						<div class="donation_memo">
@@ -162,11 +213,11 @@ $CustomPosts = $this->get_custom_posts();
 			<div class="stuffbox" id="aboutbox">
 				<h3><span class="hndle"><?php _e( 'About plugin' , $this->ltd_p ); ?></span></h3>
 				<div class="inside">
-					<p><?php _e( 'Version check' , $this->ltd_p ); ?> : 3.4.2 - 3.6 RC1</p>
+					<p><?php _e( 'Version check' , $this->ltd_p ); ?> : 3.4.2 - 3.6</p>
 					<ul>
-						<li><a href="http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank"><?php _e( 'Developer\'s site' , $this->ltd_p ); ?></a></li>
-						<li><a href="http://wordpress.org/support/plugin/screen-options-and-help-show-customize" target="_blank"><?php _e( 'Support Forums' ); ?></a></li>
-						<li><a href="http://wordpress.org/support/view/plugin-reviews/screen-options-and-help-show-customize" target="_blank"><?php _e( 'Reviews' , $this->ltd_p ); ?></a></li>
+						<li><a href="<?php echo $this->AuthorUrl; ?>?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank"><?php _e( 'Developer\'s site' , $this->ltd_p ); ?></a></li>
+						<li><a href="http://wordpress.org/support/plugin/<?php echo $this->PluginSlug; ?>" target="_blank"><?php _e( 'Support Forums' ); ?></a></li>
+						<li><a href="http://wordpress.org/support/view/plugin-reviews/<?php echo $this->PluginSlug; ?>" target="_blank"><?php _e( 'Reviews' , $this->ltd_p ); ?></a></li>
 						<li><a href="https://twitter.com/gqevu6bsiz" target="_blank">twitter</a></li>
 						<li><a href="http://www.facebook.com/pages/Gqevu6bsiz/499584376749601" target="_blank">facebook</a></li>
 					</ul>
@@ -204,7 +255,7 @@ $CustomPosts = $this->get_custom_posts();
 			<p>
 				<form id="file_export" method="get" action="">
 					<?php wp_nonce_field( $this->Nonces["value"] , $this->Nonces["field"] ); ?>
-					<input type="hidden" name="page" value="<?php echo $this->Slug; ?>" />
+					<input type="hidden" name="page" value="<?php echo $this->PageSlug; ?>" />
 					<input type="hidden" name="download" value="true" />
 					<input type="submit" class="button-secondary" name="export" value="<?php _e( 'Download Export File' ); ?>" />
 				</form>

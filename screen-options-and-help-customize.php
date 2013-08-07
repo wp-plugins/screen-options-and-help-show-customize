@@ -3,9 +3,9 @@
 Plugin Name: Screen Options and Help Show Customize
 Description: Screen options and help to show customize.
 Plugin URI:http://wordpress.org/extend/plugins/screen-options-and-help-show-customize/
-Version: 1.2.4.2
+Version: 1.2.5
 Author: gqevu6bsiz
-Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=sohc&utm_campaign=1_2_4_2
+Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=sohc&utm_campaign=1_2_5
 Text Domain: sohc
 Domain Path: /languages
 */
@@ -36,38 +36,46 @@ class Sohc
 	var $Ver,
 		$Name,
 		$Dir,
-		$Slug,
-		$RecordName,
+		$Url,
+		$AuthorUrl,
 		$ltd,
 		$ltd_p,
+		$RecordName,
+		$PageSlug,
+		$PluginSlug,
 		$Nonces,
+		$Schema,
 		$UPFN,
 		$Msg;
 
 
 	function __construct() {
-		$this->Ver = '1.2.4.2';
+		$this->Ver = '1.2.5';
 		$this->Name = 'Screen Options and Help Show Customize';
-		$this->Dir = WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) . '/';
-		$this->Slug = 'screen_option_and_help_show_customize';
-		$this->RecordName = 'sohc_options';
+		$this->Dir = plugin_dir_path( __FILE__ );
+		$this->Url = plugin_dir_url( __FILE__ );
+		$this->AuthorUrl = 'http://gqevu6bsiz.chicappa.jp/';
 		$this->ltd = 'sohc';
 		$this->ltd_p = $this->ltd . '_plugin';
+		$this->RecordName = 'sohc_options';
+		$this->PageSlug = 'screen_option_and_help_show_customize';
+		$this->PluginSlug = dirname( plugin_basename( __FILE__ ) );
 		$this->Nonces = array( "value" => $this->ltd . '_value' , "field" => $this->ltd . '_field' );
+		$this->Schema = is_ssl() ? 'https://' : 'http://';
 		$this->DonateKey = 'd77aec9bc89d445fd54b4c988d090f03';
 		$this->UPFN = 'Y';
 
 		$this->PluginSetup();
 		$this->FilterStart();
-		add_action( 'load-settings_page_' . $this->Slug , array( $this , 'export' ) );
-		add_action( 'load-settings_page_' . $this->Slug , array( $this , 'import' ) );
+		add_action( 'load-settings_page_' . $this->PageSlug , array( $this , 'export' ) );
+		add_action( 'load-settings_page_' . $this->PageSlug , array( $this , 'import' ) );
 	}
 
 	// PluginSetup
 	function PluginSetup() {
 		// load text domain
-		load_plugin_textdomain( $this->ltd , false , basename( dirname( __FILE__ ) ) . '/languages' );
-		load_plugin_textdomain( $this->ltd_p , false , basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( $this->ltd , false , $this->PluginSlug . '/languages' );
+		load_plugin_textdomain( $this->ltd_p , false , $this->PluginSlug . '/languages' );
 
 		// plugin links
 		add_filter( 'plugin_action_links' , array( $this , 'plugin_action_links' ) , 10 , 2 );
@@ -78,18 +86,22 @@ class Sohc
 			$Data = get_site_option( $this->RecordName );
 			if( empty( $Data ) ) {
 				add_action( 'admin_menu' , array( $this , 'admin_menu' ) );
+				add_action( 'admin_notices' , array( $this , 'TranslateCheck' ) );
 			}
 			add_action( 'network_admin_menu' , array( $this , 'admin_menu' ) );
+			add_action( 'network_admin_notices' , array( $this , 'TranslateCheck' ) );
 		} else {
 			add_action( 'admin_menu' , array( $this , 'admin_menu' ) );
+			add_action( 'admin_notices' , array( $this , 'TranslateCheck' ) );
 		}
+
 	}
 
 	// PluginSetup
 	function plugin_action_links( $links , $file ) {
 		if( plugin_basename(__FILE__) == $file ) {
-			$support_link = '<a href="http://wordpress.org/support/plugin/screen-options-and-help-show-customize" target="_blank">' . __( 'Support Forums' ) . '</a>';
-			$setting_link = '<a href="' . self_admin_url( 'options-general.php?page=' . $this->Slug ) . '">' . __('Settings') . '</a>';
+			$support_link = '<a href="http://wordpress.org/support/plugin/' . $this->PluginSlug . '" target="_blank">' . __( 'Support Forums' ) . '</a>';
+			$setting_link = '<a href="' . self_admin_url( 'options-general.php?page=' . $this->PageSlug ) . '">' . __('Settings') . '</a>';
 
 			array_unshift( $links, $setting_link , $support_link );
 		}
@@ -99,8 +111,8 @@ class Sohc
 	// PluginSetup
 	function network_admin_plugin_action_links( $links , $file ) {
 		if( plugin_basename(__FILE__) == $file ) {
-			$support_link = '<a href="http://wordpress.org/support/plugin/screen-options-and-help-show-customize" target="_blank">' . __( 'Support Forums' ) . '</a>';
-			$setting_link = '<a href="' . self_admin_url( 'settings.php?page=' . $this->Slug ) . '">' . __('Settings') . '</a>';
+			$support_link = '<a href="http://wordpress.org/support/plugin/' . $this->PluginSlug . '" target="_blank">' . __( 'Support Forums' ) . '</a>';
+			$setting_link = '<a href="' . self_admin_url( 'settings.php?page=' . $this->PageSlug ) . '">' . __('Settings') . '</a>';
 
 			array_unshift( $links, $setting_link , $support_link );
 		}
@@ -109,9 +121,9 @@ class Sohc
 
 	// PluginSetup
 	function admin_menu() {
-		add_options_page(  __( 'Screen Options and Help Show Customize' , $this->ltd ) , __( 'Screen Options Customize' , $this->ltd ) , 'administrator', $this->Slug , array( $this , 'settings'));
+		add_options_page(  __( 'Screen Options and Help Show Customize' , $this->ltd ) , __( 'Screen Options Customize' , $this->ltd ) , 'administrator', $this->PageSlug , array( $this , 'settings'));
 		if( defined( 'WP_ALLOW_MULTISITE' ) ) {
-			add_submenu_page( 'settings.php' , __( 'Screen Options and Help Show Customize' , $this->ltd ) , __( 'Screen Options Customize' , $this->ltd ) , 'manage_network' , $this->Slug, array( $this , 'settings_multi') );
+			add_submenu_page( 'settings.php' , __( 'Screen Options and Help Show Customize' , $this->ltd ) , __( 'Screen Options Customize' , $this->ltd ) , 'manage_network' , $this->PageSlug, array( $this , 'settings_multi') );
 		}
 	}
 
@@ -121,12 +133,6 @@ class Sohc
 
 		// footer text
 		add_filter( 'admin_footer_text' , array( $this , 'admin_footer_text' ) );
-
-		// translation
-		$mofile = $this->TransFileCk();
-		if( $mofile == false && empty( $this->Msg ) ) {
-			$this->Msg = '<div class="updated" style="background-color: rgba(255,204,190,1.0); border-color: rgba(160,0,0,1.0);"><p><strong>Please translate to your language.</strong> &gt; <a href="http://gqevu6bsiz.chicappa.jp/please-translation/?utm_source=use_plugin&utm_medium=translation&utm_content=sohc&utm_campaign=1_2_2" target="_blank">To translate</a></p></div>';
-		}
 
 		if( !empty( $_POST["donate_key"] ) ) {
 			$SubmitKey = md5( strip_tags( $_POST["donate_key"] ) );
@@ -150,12 +156,6 @@ class Sohc
 		// footer text
 		add_filter( 'admin_footer_text' , array( $this , 'admin_footer_text' ) );
 
-		// translation
-		$mofile = $this->TransFileCk();
-		if( $mofile == false && empty( $this->Msg )  ) {
-			$this->Msg = '<div class="updated" style="background-color: rgba(255,204,190,1.0); border-color: rgba(160,0,0,1.0);"><p><strong>Please translate to your language.</strong> &gt; <a href="http://gqevu6bsiz.chicappa.jp/please-translation/?utm_source=use_plugin&utm_medium=translation&utm_content=sohc&utm_campaign=1_2_2" target="_blank">To translate</a></p></div>';
-		}
-
 		if( !empty( $_POST["reset"] ) ) {
 			$this->update_reset_multi();
 		} elseif( !empty( $_POST[$this->UPFN] ) ) {
@@ -170,7 +170,7 @@ class Sohc
 	// Layout
 	function admin_footer_text( $text ) {
 		
-		$text = '<img src="http://www.gravatar.com/avatar/7e05137c5a859aa987a809190b979ed4?s=18" width="18" /> Plugin developer : <a href="http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=footer&utm_content=' . $this->ltd . '&utm_campaign=' . str_replace( '.' , '_' , $this->Ver ) . '" target="_blank">gqevu6bsiz</a>';
+		$text = '<img src="' . $this->Schema . 'www.gravatar.com/avatar/7e05137c5a859aa987a809190b979ed4?s=18" width="18" /> Plugin developer : <a href="' . $this->AuthorUrl . '?utm_source=use_plugin&utm_medium=footer&utm_content=' . $this->ltd . '&utm_campaign=' . str_replace( '.' , '_' , $this->Ver ) . '" target="_blank">gqevu6bsiz</a>';
 
 		return $text;
 	}
@@ -178,13 +178,24 @@ class Sohc
 	// Translation File Check
 	function TransFileCk() {
 		$file = false;
-		$moFile = WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) . '/languages/' . $this->ltd . '-' . get_locale() . '.mo';
+		$moFile = $this->Dir . 'languages/' . $this->ltd . '-' . get_locale() . '.mo';
 		if( file_exists( $moFile ) ) {
 			$file = true;
 		}
 		return $file;
 	}
 
+	//
+	function TranslateCheck() {
+		global $current_screen;
+
+		if( $current_screen->id == 'settings_page_' . $this->PageSlug or $current_screen->id == 'settings_page_' . $this->PageSlug . '-network' ) {
+			$mofile = $this->TransFileCk();
+			if( $mofile == false && empty( $this->Msg )  ) {
+				echo '<div class="updated" style="background-color: rgba(255,204,190,1.0); border-color: rgba(160,0,0,1.0);"><p><strong>Please translate to your language.</strong> &gt; <a href="' . $this->AuthorUrl . 'please-translation/?utm_source=use_plugin&utm_medium=translation&utm_content=sohc&utm_campaign=1_2_2" target="_blank">Please translate.</a></p></div>';
+			}
+		}
+	}
 
 
 
@@ -350,6 +361,51 @@ class Sohc
 		return $CustomPosts;
 	}
 
+	// Setting Item
+	function get_custom_taxs() {
+		$CustomTaxs = array();
+		
+		$Data = get_site_option( $this->RecordName );
+
+		if( is_network_admin() ) {
+
+			global $wpdb;
+			
+			$query = "SELECT blog_id FROM {$wpdb->blogs} WHERE site_id = '{$wpdb->siteid}'";
+			$Blogs = $wpdb->get_results( $query, ARRAY_A );
+			
+			foreach( $Blogs as $key => $blog ) {
+
+				switch_to_blog( $blog["blog_id"] );
+				global $wpdb;
+				$row = $wpdb->get_col( "SELECT DISTINCT taxonomy FROM $wpdb->term_taxonomy WHERE taxonomy != 'category' AND taxonomy != 'post_tag'" );
+				
+				if( !empty( $row ) ) {
+					foreach( $row as $custom_tax_name ) {
+						$CustomTaxs[$custom_tax_name] = array( "edit" => "Edit " . $custom_tax_name );
+					}
+				}
+
+			}
+			
+			restore_current_blog();
+
+		} else {
+
+			$args = array( 'public' => true , '_builtin' => false , 'show_ui' => true );
+			$ctax = get_taxonomies( $args , 'objects' );
+			
+			if( !empty( $ctax ) ) {
+				foreach( $ctax as $custom_tax_name => $ct ) {
+					$CustomTaxs[$custom_tax_name] = array( "edit" => $ct->labels->edit_item );
+				}
+			}
+
+		}
+		
+		return $CustomTaxs;
+	}
+
 
 
 
@@ -430,7 +486,7 @@ class Sohc
 		$Data = $this->get_data();
 		if( !empty( $Data ) && !empty( $_GET["download"] ) && check_admin_referer( $this->Nonces["value"] , $this->Nonces["field"] ) ) {
 
-			$filename = $this->Slug . '.csv';
+			$filename = $this->PageSlug . '.csv';
 			header( 'Content-Description: File Transfer' );
 			header( 'Content-Disposition: attachment; filename=' . $filename );
 			header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ), true );
