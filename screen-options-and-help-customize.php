@@ -3,9 +3,9 @@
 Plugin Name: Screen Options and Help Show Customize
 Description: Screen options and help to show customize.
 Plugin URI:http://wordpress.org/extend/plugins/screen-options-and-help-show-customize/
-Version: 1.2.5
+Version: 1.2.6
 Author: gqevu6bsiz
-Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=sohc&utm_campaign=1_2_5
+Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=sohc&utm_campaign=1_2_6
 Text Domain: sohc
 Domain Path: /languages
 */
@@ -39,7 +39,6 @@ class Sohc
 		$Url,
 		$AuthorUrl,
 		$ltd,
-		$ltd_p,
 		$RecordName,
 		$PageSlug,
 		$PluginSlug,
@@ -50,13 +49,12 @@ class Sohc
 
 
 	function __construct() {
-		$this->Ver = '1.2.5';
+		$this->Ver = '1.2.6';
 		$this->Name = 'Screen Options and Help Show Customize';
 		$this->Dir = plugin_dir_path( __FILE__ );
 		$this->Url = plugin_dir_url( __FILE__ );
 		$this->AuthorUrl = 'http://gqevu6bsiz.chicappa.jp/';
 		$this->ltd = 'sohc';
-		$this->ltd_p = $this->ltd . '_plugin';
 		$this->RecordName = 'sohc_options';
 		$this->PageSlug = 'screen_option_and_help_show_customize';
 		$this->PluginSlug = dirname( plugin_basename( __FILE__ ) );
@@ -75,7 +73,6 @@ class Sohc
 	function PluginSetup() {
 		// load text domain
 		load_plugin_textdomain( $this->ltd , false , $this->PluginSlug . '/languages' );
-		load_plugin_textdomain( $this->ltd_p , false , $this->PluginSlug . '/languages' );
 
 		// plugin links
 		add_filter( 'plugin_action_links' , array( $this , 'plugin_action_links' ) , 10 , 2 );
@@ -138,7 +135,7 @@ class Sohc
 			$SubmitKey = md5( strip_tags( $_POST["donate_key"] ) );
 			if( $this->DonateKey == $SubmitKey ) {
 				update_option( $this->ltd . '_donated' , $SubmitKey );
-				$this->Msg .= '<div class="updated"><p><strong>' . __( 'Thank you for your donation.' , $this->ltd_p ) . '</strong></p></div>';
+				$this->Msg .= '<div class="updated"><p><strong>' . __( 'Thank you for your donation.' , $this->ltd ) . '</strong></p></div>';
 			}
 		} elseif( !empty( $_POST["reset"] ) ) {
 			$this->update_reset();

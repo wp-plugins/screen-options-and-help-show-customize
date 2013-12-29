@@ -1,10 +1,10 @@
 === Screen Options and Help Show Customize ===
 Contributors: gqevu6bsiz
-Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=sohc&utm_campaign=1_2_5
+Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=sohc&utm_campaign=1_2_6
 Tags: admin, dashboard, menu, options, option, help, tabs, role, user, screen options, media, link, pages, page, posts, post
-Requires at least: 3.4.2
-Tested up to: 3.6
-Stable tag: 1.2.5
+Requires at least: 3.6.1
+Tested up to: 3.8
+Stable tag: 1.2.6
 License: GPL2
 
 Customization of the Screen options and Help.
@@ -19,7 +19,7 @@ With Multisite Supported.
 
 1. Upload the entire post-list-view-custom folder to the /wp-content/plugins/ directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. You will find 'Screen Options Customize' menu in your WordPress admin panel.
+3. You will find 'Screen Options Customize' menu in your WordPress admin panel on 'Settings'.
 
 == Frequently Asked Questions ==
 
@@ -29,12 +29,13 @@ With Multisite Supported.
 
 == Screenshots ==
 
-1. Menu position
-2. Simply settings
-3. Screen Example
-4. Setting Example
+1. Simply settings
 
 == Changelog ==
+
+= 1.2.6 =
+* Updated: Existence check of Link Manager.
+* Updated: Compatible WP3.8.
 
 = 1.2.5 =
 * Support SSL.

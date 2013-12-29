@@ -40,6 +40,23 @@
 	margin-left: 1%;
 	margin-right: 1%;
 }
+#sohc .postbox-container #sohc_form .postbox.closed:hover {
+	border: 1px solid #999;
+}
+#sohc .postbox-container #sohc_form .postbox .handlediv:before {
+	right: 0;
+	top: 0;
+	content: '\f142';
+	position: absolute;
+	font: 400 20px/1 dashicons;
+	speak: none;
+	display: inline-block;
+	padding: 8px 10px;
+	text-decoration: none!important;
+}
+#sohc .postbox-container #sohc_form .postbox.closed .handlediv:before {
+	content: '\f140';
+}
 #sohc .postbox-container .widefat th {
 	font-size: 12px;
 }
