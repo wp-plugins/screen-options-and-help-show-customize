@@ -1,0 +1,201 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Screen Options and Help Show Customize\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-29 13:05+0900\n"
+"PO-Revision-Date: 2014-03-18 02:44+0200\n"
+"Last-Translator: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
+"Language-Team: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ../\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.6.4\n"
+"Language: tr_TR\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: screen-options-and-help-customize.php:4
+msgid "Screen options and help to show customize."
+msgstr "Ekran tercihleri ve yardım menüsünün özelleştirilmesi"
+
+#: screen-options-and-help-customize.php:121
+#: screen-options-and-help-customize.php:123 inc/settings.php:24
+msgid "Screen Options and Help Show Customize"
+msgstr "Ekran tercihleri ve yardım menüsünün özelleştirilmesi"
+
+#: screen-options-and-help-customize.php:121
+#: screen-options-and-help-customize.php:123
+msgid "Screen Options Customize"
+msgstr "Ekran tercihlerinin özelleştirilmesi"
+
+#: screen-options-and-help-customize.php:138 inc/settings.php:179
+msgid "Thank you for your donation."
+msgstr "Bağışınız için teşekkür ederim"
+
+#: screen-options-and-help-customize.php:298
+#: screen-options-and-help-customize.php:301
+msgid "All checked"
+msgstr "Hepsini seçin"
+
+#: inc/settings.php:27
+msgid "Please set by clicking on the item you want to set."
+msgstr "Görünmesini istediğiniz kısmı işaretleyin lütfen"
+
+#: inc/settings.php:28
+msgid "Please check the items you want to hide."
+msgstr "Gizlemek istediğiniz kısmı işaretleyin lütfen"
+
+#: inc/settings.php:30
+msgid ""
+"Data set in the network management screen is applied to all site management "
+"screen."
+msgstr "Burada yapılan yetkilendirme tüm sitede geçerli olur."
+
+#: inc/settings.php:112
+msgid "Custom post types"
+msgstr "Gönderi tiplerini özelleştir"
+
+#: inc/settings.php:115
+msgid "It can be select when posted of the Custom Post types exists."
+msgstr "Gönderi / yazı tiplerine göre seçim yapılabilir."
+
+#: inc/settings.php:129
+msgid "Custom taxonomies"
+msgstr "Özelleştirme sınıfları"
+
+#: inc/settings.php:132
+msgid "It can be select when created of the Custom Taxonomies exists."
+msgstr "Yeni türler oluşturlduğunda özelleştirmede değişikliğe gidilebilir."
+
+#: inc/settings.php:150
+msgid "Reset all settings?"
+msgstr "Bütün ayarları sıfırlayın"
+
+#: inc/settings.php:151
+msgid "Reset settings"
+msgstr "Ayarları sıfırlayın"
+
+#: inc/settings.php:161
+msgid "Have you want to customize?"
+msgstr "Özlleştirme yapmak ister misiniz ?"
+
+#: inc/settings.php:167
+msgid "I am good at Admin Screen Customize."
+msgstr "Ben iyi bir yönetici paneli özelleştiricsiyim"
+
+#: inc/settings.php:168
+msgid "Please consider the request to me if it is good."
+msgstr "Eklentim iyi isi lütfen belirtin ( puan verin )"
+
+#: inc/settings.php:170
+msgid "Example Customize"
+msgstr "Örnek özelleştirme"
+
+#: inc/settings.php:171
+msgid "Contact me"
+msgstr "Bana ulaşın"
+
+#: inc/settings.php:185
+msgid "Please donation."
+msgstr "Lütfen bağış yapın"
+
+#: inc/settings.php:186
+msgid ""
+"You are contented with this plugin?<br />By the laws of Japan, Japan's new "
+"paypal user can not make a donation button.<br />So i would like you to buy "
+"this plugin as the replacement for the donation."
+msgstr ""
+"Bu eklentiyi beğendin mi ? Japon yasalarına göre japonyanın yeni paypal "
+"üyeleri bağış butonu kulanamıyor. Bunun yerine eklentiyi satın almanızı "
+"istiyorum sizden."
+
+#: inc/settings.php:193
+msgid "Features"
+msgstr "Özellikleri"
+
+#: inc/settings.php:194
+msgid ""
+"Line Break First and End plugin is In the visual editor TinyMCE, It is a "
+"plugin that will help when you will not be able to enter a line break."
+msgstr ""
+"Line Break First and End TinyMCE nin bir eklentisi. Bu eklenti mola "
+"veremediğiniz zamanlarda size yardımcı olur."
+
+#: inc/settings.php:197
+msgid "The primary use of donations"
+msgstr "Bağışların birincil amacı"
+
+#: inc/settings.php:199
+msgid "Liquidation of time and value"
+msgstr ""
+
+#: inc/settings.php:200
+msgid "Additional suggestions feature"
+msgstr ""
+
+#: inc/settings.php:201
+msgid "Maintain motivation"
+msgstr "Motivasyon sağlamak"
+
+#: inc/settings.php:202
+msgid "Ensure time as the father of Sunday"
+msgstr "Bugün pazar / tatil"
+
+#: inc/settings.php:207
+msgid "If you have already donated to."
+msgstr "Zaten bağış yapnızı mı"
+
+#: inc/settings.php:208
+msgid ""
+"Please enter the 'Donation delete key' that have been described in the 'Line "
+"Break First and End download page'."
+msgstr "Sayfada belirtildiği gibi bir bağış kodu girin lütfen"
+
+#: inc/settings.php:211
+msgid "Donation delete key"
+msgstr "Bağışı sil"
+
+#: inc/settings.php:223
+msgid "About plugin"
+msgstr "Eklenti hakkında"
+
+#: inc/settings.php:225
+msgid "Version checked"
+msgstr "Versiyon kontrolü"
+
+#: inc/settings.php:227
+msgid "Developer's site"
+msgstr "Geliştiricinin web sitesi"
+
+#: inc/settings.php:229
+msgid "Reviews"
+msgstr "Değerlendirmeler"
+
+#: inc/settings.php:237
+msgid "Useful plugins"
+msgstr "Faydalı eklentiler"
+
+#: inc/settings.php:240
+msgid "Customize a variety of screen management."
+msgstr "Ekran özelliklerinin özelleştirilmesi"
+
+#: inc/settings.php:242
+msgid ""
+"Customize the list of the post and page. custom post type page, too. You can "
+"customize the column display items freely."
+msgstr ""
+"Yazı ve sayfanın özelleştirilmesi. Yazı, gönderi tipini de "
+"özelleştirebilirsiniz."
+
+#: inc/settings.php:244
+msgid ""
+"Announce to display the dashboard. Change the display to a different user "
+"role."
+msgstr ""
+"Bidirim ekranının özelleştirilmesi. Ekranı kullanıcıya göre şekillendirin."
+
+#: inc/settings.php:259
+msgid "Import and Export"
+msgstr "Yükle ve İndir"
