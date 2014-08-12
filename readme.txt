@@ -2,7 +2,7 @@
 Contributors: gqevu6bsiz
 Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=sohc&utm_campaign=1_3
 Tags: admin, dashboard, menu, options, option, help, tabs, role, user, screen options, media, link, pages, page, posts, post
-Requires at least: 3.7.3
+Requires at least: 3.7.4
 Tested up to: 3.9.2
 Stable tag: 1.3
 License: GPL2
