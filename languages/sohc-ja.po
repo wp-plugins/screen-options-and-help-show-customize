@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Screen Options and Help Show Customize\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-29 13:05+0900\n"
-"PO-Revision-Date: 2013-12-29 13:16+0900\n"
+"POT-Creation-Date: 2014-08-12 21:53+0900\n"
+"PO-Revision-Date: 2014-08-12 21:55+0900\n"
 "Last-Translator: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
 "Language-Team: gqevu6bsiz <gqevu6bsiz>\n"
 "MIME-Version: 1.0\n"
@@ -17,164 +17,143 @@ msgstr ""
 msgid "Screen options and help to show customize."
 msgstr "表示オプションとヘルプの表示カスタマイズです。"
 
-#: screen-options-and-help-customize.php:121
-#: screen-options-and-help-customize.php:123
-#: inc/settings.php:24
-msgid "Screen Options and Help Show Customize"
-msgstr ""
+#: screen-options-and-help-show-customize.php:100
+#, php-format
+msgid "%1$s of %2$s"
+msgstr "%2$sの%1$s"
 
-#: screen-options-and-help-customize.php:121
-#: screen-options-and-help-customize.php:123
-msgid "Screen Options Customize"
-msgstr "オプションタブ表示カスタマイズ"
+#: inc/class-config.php:360
+msgid "Custom Post Types"
+msgstr "カスタム投稿タイプ"
 
-#: screen-options-and-help-customize.php:138
-#: inc/settings.php:179
+#: inc/class-config.php:376
+msgid "Custom Taxonomies"
+msgstr "カスタムタクソノミー"
+
+#: inc/class-manager.php:201
+#: inc/information.php:3
 msgid "Thank you for your donation."
 msgstr "寄付いただきありがとうございます。"
 
-#: screen-options-and-help-customize.php:298
-#: screen-options-and-help-customize.php:301
-msgid "All checked"
-msgstr "全てチェック"
+#: inc/class-plugin-info.php:115
+#: inc/information.php:14
+msgid "Please consider making a donation."
+msgstr "宜しければ寄付のご検討をお願いします。"
 
-#: inc/settings.php:27
-msgid "Please set by clicking on the item you want to set."
-msgstr "設定したい項目をクリックして設定してください。"
+#: inc/information.php:16
+msgid "Thank you very much for your support."
+msgstr "あなたの支援を感謝します。"
 
-#: inc/settings.php:28
-msgid "Please check the items you want to hide."
-msgstr "非表示にしたい項目にチェックしてください。"
+#: inc/information.php:17
+msgid "Donate"
+msgstr "寄付について"
 
-#: inc/settings.php:30
-msgid "Data set in the network management screen is applied to all site management screen."
-msgstr "ネットワーク管理画面で設定したデータは、全てのサイトの管理画面に適用されます。"
-
-#: inc/settings.php:112
-msgid "Custom post types"
-msgstr "カスタム投稿タイプ"
-
-#: inc/settings.php:115
-msgid "It can be select when posted of the Custom Post types exists."
-msgstr "カスタム投稿タイプが投稿済みの場合、選択できるようになります。"
-
-#: inc/settings.php:129
-msgid "Custom taxonomies"
-msgstr "カスタムタクソノミー"
-
-#: inc/settings.php:132
-msgid "It can be select when created of the Custom Taxonomies exists."
-msgstr "カスタムタクソノミーが作成済みの場合、選択できるようになります。"
-
-#: inc/settings.php:150
-msgid "Reset all settings?"
-msgstr "リセットしますか?"
-
-#: inc/settings.php:151
-msgid "Reset settings"
-msgstr "設定をリセット"
-
-#: inc/settings.php:161
-msgid "Have you want to customize?"
-msgstr "何かカスタマイズしたい事はありますか？"
-
-#: inc/settings.php:167
-msgid "I am good at Admin Screen Customize."
-msgstr "私は管理画面のカスタマイズを得意とします。"
-
-#: inc/settings.php:168
-msgid "Please consider the request to me if it is good."
-msgstr "宜しければご検討ください。"
-
-#: inc/settings.php:170
-msgid "Example Customize"
-msgstr "カスタマイズ例"
-
-#: inc/settings.php:171
-msgid "Contact me"
-msgstr "お問い合わせ"
-
-#: inc/settings.php:185
-msgid "Please donation."
-msgstr "寄付のお願い"
-
-#: inc/settings.php:186
-msgid "You are contented with this plugin?<br />By the laws of Japan, Japan's new paypal user can not make a donation button.<br />So i would like you to buy this plugin as the replacement for the donation."
-msgstr "このプラグインを使って満足できましたか？<br />日本の法律では、日本の新PayPalユーザーは寄付ボタンを作成することはできません。<br />なので寄付の代わりとしてこのプラグインを購入して欲しいです。"
-
-#: inc/settings.php:193
-msgid "Features"
-msgstr "機能について"
-
-#: inc/settings.php:194
-msgid "Line Break First and End plugin is In the visual editor TinyMCE, It is a plugin that will help when you will not be able to enter a line break."
-msgstr "Line Break First and Endプラグインは、TinyMCEのビジュアルエディタで、改行を入力することが出来なくなった時に便利なプラグインです。"
-
-#: inc/settings.php:197
-msgid "The primary use of donations"
-msgstr "寄付の主な使用目的"
-
-#: inc/settings.php:199
-msgid "Liquidation of time and value"
-msgstr "時間と価値の清算"
-
-#: inc/settings.php:200
-msgid "Additional suggestions feature"
-msgstr "機能提案の追加"
-
-#: inc/settings.php:201
-msgid "Maintain motivation"
-msgstr "モチベーション維持"
-
-#: inc/settings.php:202
-msgid "Ensure time as the father of Sunday"
-msgstr "日曜日の父親としての時間確保"
-
-#: inc/settings.php:207
-msgid "If you have already donated to."
-msgstr "寄付済みの方へ。"
-
-#: inc/settings.php:208
+#: inc/information.php:18
 msgid "Please enter the 'Donation delete key' that have been described in the 'Line Break First and End download page'."
 msgstr "'Line Break First and End ダウンロードページ' に記載されていた寄付削除キーを入力して、寄付メッセージを削除できます。"
 
-#: inc/settings.php:211
+#: inc/information.php:23
 msgid "Donation delete key"
 msgstr "寄付メッセージ削除キー"
 
-#: inc/settings.php:223
+#: inc/information.php:28
+msgid "I'm looking forward to your proposal."
+msgstr "あなたのご提案をお待ちしております。"
+
+#: inc/information.php:29
+msgid "Please contact me if you have any good idea."
+msgstr "いいアイデアがありましたらご連絡お待ちしております。"
+
+#: inc/information.php:36
+msgid "Have you want to customize?"
+msgstr "何かカスタマイズしたい事はありますか？"
+
+#: inc/information.php:43
+msgid "I am good at Admin Screen Customize."
+msgstr "私は管理画面のカスタマイズを得意とします。"
+
+#: inc/information.php:44
+msgid "Please consider the request to me if it is good."
+msgstr "宜しければご検討ください。"
+
+#: inc/information.php:46
+msgid "Contact"
+msgstr "お問い合わせ"
+
+#: inc/information.php:48
+msgid "Example Customize"
+msgstr "カスタマイズ例"
+
+#: inc/information.php:53
 msgid "About plugin"
 msgstr "プラグインについて"
 
-#: inc/settings.php:225
+#: inc/information.php:55
 msgid "Version checked"
 msgstr "チェック済みバージョン"
 
-#: inc/settings.php:227
+#: inc/information.php:57
 msgid "Developer's site"
 msgstr "開発者のサイト"
 
-#: inc/settings.php:229
+#: inc/information.php:59
 msgid "Reviews"
 msgstr "レビュー"
 
-#: inc/settings.php:237
+#: inc/information.php:64
+msgid "Would you like to translate?"
+msgstr "宜しければ翻訳していただけませんか？"
+
+#: inc/information.php:65
+#, php-format
+msgid "Do you have a proposal you want to improve? Please contact to %s if it is necessary."
+msgstr "改善して欲しい事がありましたら、%s までご連絡お願いします。"
+
+#: inc/information.php:70
 msgid "Useful plugins"
 msgstr "便利なプラグイン"
 
-#: inc/settings.php:240
+#: inc/information.php:73
 msgid "Customize a variety of screen management."
 msgstr "管理画面の様々なカスタマイズ"
 
-#: inc/settings.php:242
-msgid "Customize the list of the post and page. custom post type page, too. You can customize the column display items freely."
-msgstr "投稿と固定ページ一覧をカスタマイズします。カスタム投稿タイプも。カラム一覧を自由にカスタマイズできます。"
-
-#: inc/settings.php:244
+#: inc/information.php:75
 msgid "Announce to display the dashboard. Change the display to a different user role."
 msgstr "ダッシュボードにお知らせを表示します。ユーザーの権限ごとに表示を変更できます。"
 
-#: inc/settings.php:259
+#: inc/information.php:77
+msgid "The plugin that allows you to add the value of the options. Option value that you have created, can be used in addition to the template tag, Short code can be used in the body of the article."
+msgstr "サイトのオプション値を作成することができます。作成したオプション値はテンプレート、投稿へのショートコードとして使用することができます。"
+
+#: inc/information.php:79
+msgid "Customize the list of the post and page. custom post type page, too. You can customize the column display items freely."
+msgstr "投稿と固定ページ一覧をカスタマイズします。カスタム投稿タイプも。カラム一覧を自由にカスタマイズできます。"
+
+#: inc/setting.php:11
+#: inc/setting_other.php:13
+msgid "Other Settings"
+msgstr "その他の設定"
+
+#: inc/setting.php:15
+msgid "Data set in the network management screen is applied to all site management screen."
+msgstr "ネットワーク管理画面で設定したデータは、全てのサイトの管理画面に適用されます。"
+
+#: inc/setting.php:88
+#: inc/setting_other.php:64
+msgid "Reset all settings?"
+msgstr "リセットしますか?"
+
+#: inc/setting.php:89
+#: inc/setting_other.php:65
+msgid "Reset settings"
+msgstr "設定をリセット"
+
+#: inc/setting.php:103
 msgid "Import and Export"
 msgstr "インポートとエクスポート"
+
+#: inc/setting_other.php:40
+#, php-format
+msgid "Please choose the minimum role that can modify %s settings."
+msgstr "%s の設定が可能な最小限の権限を選択してください。"
 
