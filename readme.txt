@@ -1,10 +1,10 @@
 === Screen Options and Help Show Customize ===
 Contributors: gqevu6bsiz
-Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=sohc&utm_campaign=1_3_1
+Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=sohc&utm_campaign=1_3_2
 Tags: admin, dashboard, menu, options, option, help, tabs, role, user, screen options, media, link, pages, page, posts, post
 Requires at least: 3.7.3
-Tested up to: 4.0
-Stable tag: 1.3.1
+Tested up to: 4.1
+Stable tag: 1.3.2
 License: GPL2
 
 Customization of the Screen options and Help.
@@ -32,6 +32,9 @@ With Multisite Supported.
 1. Settings Interface
 
 == Changelog ==
+
+= 1.3.2 =
+* Fixed: Get the current user group.
 
 = 1.3.1 =
 * Fixed: Activate the WooCommerce check.
