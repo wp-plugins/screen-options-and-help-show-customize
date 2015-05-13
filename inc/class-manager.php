@@ -176,7 +176,7 @@ class Sohc_Manager
 		
 		global $Sohc;
 		
-		$url = remove_query_arg( array( $Sohc->Plugin['msg_notice'] ) );
+		$url = esc_url( remove_query_arg( array( $Sohc->Plugin['msg_notice'] ) ) );
 		
 		return $url;
 

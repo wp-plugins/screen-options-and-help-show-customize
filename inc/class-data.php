@@ -202,7 +202,7 @@ class Sohc_Data
 						
 				}
 				
-				wp_redirect( add_query_arg( $Sohc->Plugin['msg_notice'] , 'update' ) );
+				wp_redirect( esc_url_raw( add_query_arg( $Sohc->Plugin['msg_notice'] , 'update' ) ) );
 				exit;
 
 			}
@@ -225,7 +225,7 @@ class Sohc_Data
 
 		}
 
-		wp_redirect( add_query_arg( $Sohc->Plugin['msg_notice'] , 'delete' ) );
+		wp_redirect( esc_url_raw( add_query_arg( $Sohc->Plugin['msg_notice'] , 'delete' ) ) );
 		exit;
 
 	}
@@ -255,7 +255,7 @@ class Sohc_Data
 
 			}
 
-			wp_redirect( add_query_arg( $Sohc->Plugin['msg_notice'] , 'update' ) );
+			wp_redirect( esc_url_raw( add_query_arg( $Sohc->Plugin['msg_notice'] , 'update' ) ) );
 			exit;
 
 		}
@@ -316,7 +316,7 @@ class Sohc_Data
 					
 				}
 
-				wp_redirect( add_query_arg( $Sohc->Plugin['msg_notice'] , 'updated' ) );
+				wp_redirect( esc_url_raw( add_query_arg( $Sohc->Plugin['msg_notice'] , 'updated' ) ) );
 				exit;
 
 			}
@@ -347,7 +347,7 @@ class Sohc_Data
 					update_option( $Sohc->ClassInfo->DonateRecord , $is_donate_check );
 					
 				}
-				wp_redirect( add_query_arg( $Sohc->Plugin['msg_notice'] , 'donated' ) );
+				wp_redirect( esc_url_raw( add_query_arg( $Sohc->Plugin['msg_notice'] , 'donated' ) ) );
 				exit;
 
 			}

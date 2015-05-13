@@ -8,7 +8,7 @@ $all_user_roles = $Sohc->ClassConfig->get_all_user_roles();
 	<div class="icon32" id="icon-options-general"></div>
 	<h2>
 		<?php echo $Sohc->Plugin['name']; ?>
-		<a href="<?php echo add_query_arg( array( 'page_tab' => 'other' ) , $this->get_action_link() );?>" class="add-new-h2"><?php _e( 'Other Settings' , $Sohc->Plugin['ltd'] ); ?></a>
+		<a href="<?php echo esc_url( add_query_arg( array( 'page_tab' => 'other' ) , $this->get_action_link() ) );?>" class="add-new-h2"><?php _e( 'Other Settings' , $Sohc->Plugin['ltd'] ); ?></a>
 	</h2>
 
 	<?php if( $Sohc->Current['multisite'] && $Sohc->Current['network_admin'] ) : ?>

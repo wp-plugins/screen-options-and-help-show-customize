@@ -19,7 +19,7 @@ class Sohc_Config
 		
 		global $Sohc;
 
-		$Sohc->Plugin['ver']              = '1.3.2';
+		$Sohc->Plugin['ver']              = '1.3.3';
 		$Sohc->Plugin['plugin_slug']      = 'screen-options-and-help-show-customize';
 		$Sohc->Plugin['dir']              = trailingslashit( dirname( dirname( __FILE__ ) ) );
 		$Sohc->Plugin['name']             = 'Screen Options and Help Show Customize';
